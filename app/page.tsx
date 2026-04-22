@@ -24,10 +24,14 @@ import {
   Database,
   AlertTriangle,
   ArrowRight,
+  Copy,
+  Check,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
+const CONTACT_EMAIL = "Zachmccollum@AviationStandardGrading.com";
 
 const grades = [
   { label: "Centering", score: "9.5" },
@@ -166,6 +170,12 @@ function GradeBar({ label, score }: { label: string; score: string }) {
 export default function AGSWebsite() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cert, setCert] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  const [formName, setFormName] = useState("");
+  const [formEmail, setFormEmail] = useState("");
+  const [formType, setFormType] = useState("Waitlist");
+  const [formMessage, setFormMessage] = useState("");
 
   const certResult = useMemo(() => {
     if (!cert.trim()) return null;
@@ -179,6 +189,29 @@ export default function AGSWebsite() {
       status: "Preview Result",
     };
   }, [cert]);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      alert(CONTACT_EMAIL);
+    }
+  };
+
+  const openPrefilledEmail = () => {
+    const subject = encodeURIComponent(`AGS ${formType} Request`);
+    const body = encodeURIComponent(
+      `Name: ${formName || "(not provided)"}\nEmail: ${formEmail || "(not provided)"}\nType: ${formType}\n\nMessage:\n${formMessage || "(no message provided)"}`
+    );
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  };
+
+  const scrollToContact = () => {
+    const el = document.getElementById("contact");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
@@ -221,8 +254,11 @@ export default function AGSWebsite() {
           </nav>
 
           <div className="hidden md:block">
-            <Button asChild className="rounded-2xl bg-white text-slate-950 hover:bg-slate-200">
-              <a href="#contact">Join the Waitlist</a>
+            <Button
+              onClick={scrollToContact}
+              className="rounded-2xl bg-white text-slate-950 hover:bg-slate-200"
+            >
+              Join the Waitlist
             </Button>
           </div>
 
@@ -243,8 +279,11 @@ export default function AGSWebsite() {
               <a href="#lookup" className="text-sm text-slate-300">Lookup</a>
               <a href="#vault" className="text-sm text-slate-300">Vault</a>
               <a href="#contact" className="text-sm text-slate-300">Contact</a>
-              <Button asChild className="rounded-2xl bg-white text-slate-950 hover:bg-slate-200">
-                <a href="#contact">Join the Waitlist</a>
+              <Button
+                onClick={scrollToContact}
+                className="rounded-2xl bg-white text-slate-950 hover:bg-slate-200"
+              >
+                Join the Waitlist
               </Button>
             </div>
           </div>
@@ -282,11 +321,12 @@ export default function AGSWebsite() {
               </div>
 
               <div className="flex flex-col gap-4 sm:flex-row">
-                <Button asChild className="rounded-2xl bg-white px-6 py-6 text-base font-semibold text-slate-950 hover:bg-slate-200">
-                  <a href="#contact">
-                    Join the Waitlist
-                    <ChevronRight className="ml-2 h-4 w-4" />
-                  </a>
+                <Button
+                  onClick={scrollToContact}
+                  className="rounded-2xl bg-white px-6 py-6 text-base font-semibold text-slate-950 hover:bg-slate-200"
+                >
+                  Join the Waitlist
+                  <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
                 <Button
                   asChild
@@ -389,8 +429,11 @@ export default function AGSWebsite() {
                   updates, pricing questions, and future waitlist information.
                 </p>
               </div>
-              <Button asChild className="rounded-2xl bg-white px-6 py-6 text-base font-semibold text-slate-950 hover:bg-slate-200">
-                <a href="#contact">Get Launch Updates</a>
+              <Button
+                onClick={scrollToContact}
+                className="rounded-2xl bg-white px-6 py-6 text-base font-semibold text-slate-950 hover:bg-slate-200"
+              >
+                Get Launch Updates
               </Button>
             </CardContent>
           </Card>
@@ -475,10 +518,12 @@ export default function AGSWebsite() {
                         </span>
                       </div>
                       <p className="mt-3 flex-1 leading-7 text-slate-300">{service.desc}</p>
-                      <Button asChild variant="link" className="mt-4 h-auto justify-start px-0 text-sky-300 hover:text-sky-200">
-                        <a href="#contact">
-                          Ask about this service <ArrowRight className="ml-1 h-4 w-4" />
-                        </a>
+                      <Button
+                        onClick={scrollToContact}
+                        variant="link"
+                        className="mt-4 h-auto justify-start px-0 text-sky-300 hover:text-sky-200"
+                      >
+                        Ask about this service <ArrowRight className="ml-1 h-4 w-4" />
                       </Button>
                     </CardContent>
                   </Card>
@@ -664,8 +709,11 @@ export default function AGSWebsite() {
                 system.
               </p>
               <div className="mt-6 flex flex-col gap-4 sm:flex-row">
-                <Button asChild className="rounded-2xl bg-white text-slate-950 hover:bg-slate-200">
-                  <a href="#contact">Ask About Vault Development</a>
+                <Button
+                  onClick={scrollToContact}
+                  className="rounded-2xl bg-white text-slate-950 hover:bg-slate-200"
+                >
+                  Ask About Vault Development
                 </Button>
                 <Button asChild variant="outline" className="rounded-2xl border-white/15 bg-white/5 text-white hover:bg-white/10">
                   <a href="#lookup">View Lookup Preview</a>
@@ -689,17 +737,58 @@ export default function AGSWebsite() {
                   grading questions.
                 </p>
 
+                <div className="mt-8 grid gap-4">
+                  <div className="grid gap-2">
+                    <label className="text-sm font-medium text-slate-300">Name</label>
+                    <Input
+                      value={formName}
+                      onChange={(e) => setFormName(e.target.value)}
+                      placeholder="Your name"
+                      className="h-12 rounded-2xl border-white/10 bg-slate-900/60 text-white placeholder:text-slate-500"
+                    />
+                  </div>
+
+                  <div className="grid gap-2">
+                    <label className="text-sm font-medium text-slate-300">Email</label>
+                    <Input
+                      value={formEmail}
+                      onChange={(e) => setFormEmail(e.target.value)}
+                      placeholder="your@email.com"
+                      className="h-12 rounded-2xl border-white/10 bg-slate-900/60 text-white placeholder:text-slate-500"
+                    />
+                  </div>
+
+                  <div className="grid gap-2">
+                    <label className="text-sm font-medium text-slate-300">Type</label>
+                    <select
+                      value={formType}
+                      onChange={(e) => setFormType(e.target.value)}
+                      className="h-12 rounded-2xl border border-white/10 bg-slate-900/60 px-4 text-white"
+                    >
+                      <option value="Waitlist">Waitlist</option>
+                      <option value="General Question">General Question</option>
+                      <option value="Pricing Question">Pricing Question</option>
+                      <option value="Vault Development">Vault Development</option>
+                    </select>
+                  </div>
+
+                  <div className="grid gap-2">
+                    <label className="text-sm font-medium text-slate-300">Message</label>
+                    <textarea
+                      value={formMessage}
+                      onChange={(e) => setFormMessage(e.target.value)}
+                      placeholder="Tell AGS what you need..."
+                      className="min-h-[130px] rounded-2xl border border-white/10 bg-slate-900/60 px-4 py-3 text-white placeholder:text-slate-500"
+                    />
+                  </div>
+                </div>
+
                 <div className="mt-8 space-y-4">
                   <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-slate-900/60 p-4">
                     <Mail className="mt-1 h-5 w-5 text-sky-300" />
-                    <div>
+                    <div className="min-w-0">
                       <p className="font-semibold text-white">Email</p>
-                      <a
-                        href="mailto:Zachmccollum@AviationStandardGrading.com?subject=AGS%20Waitlist%20or%20Inquiry"
-                        className="text-slate-300 underline-offset-4 hover:underline"
-                      >
-                        Zachmccollum@AviationStandardGrading.com
-                      </a>
+                      <p className="break-all text-slate-300">{CONTACT_EMAIL}</p>
                     </div>
                   </div>
 
@@ -711,16 +800,29 @@ export default function AGSWebsite() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-4 pt-2 sm:flex-row">
-                    <Button asChild className="rounded-2xl bg-white text-slate-950 hover:bg-slate-200">
-                      <a href="mailto:Zachmccollum@AviationStandardGrading.com?subject=AGS%20Waitlist%20Request">
-                        Join Waitlist
-                      </a>
+                  <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:flex-wrap">
+                    <Button
+                      onClick={openPrefilledEmail}
+                      className="rounded-2xl bg-white text-slate-950 hover:bg-slate-200"
+                    >
+                      Send Message
                     </Button>
-                    <Button asChild variant="outline" className="rounded-2xl border-white/15 bg-white/5 text-white hover:bg-white/10">
-                      <a href="mailto:Zachmccollum@AviationStandardGrading.com?subject=AGS%20General%20Question">
-                        Email AGS
-                      </a>
+                    <Button
+                      onClick={copyEmail}
+                      variant="outline"
+                      className="rounded-2xl border-white/15 bg-white/5 text-white hover:bg-white/10"
+                    >
+                      {copied ? (
+                        <>
+                          <Check className="mr-2 h-4 w-4" />
+                          Email Copied
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="mr-2 h-4 w-4" />
+                          Copy Email
+                        </>
+                      )}
                     </Button>
                   </div>
                 </div>
