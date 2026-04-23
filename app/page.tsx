@@ -9,11 +9,9 @@ import {
   BadgeCheck,
   Package,
   ScanLine,
-  Trophy,
   Menu,
   X,
   ChevronRight,
-  Wrench,
   ClipboardCheck,
   Radar,
   HeartHandshake,
@@ -26,6 +24,9 @@ import {
   ArrowRight,
   Copy,
   Check,
+  Sparkles,
+  Lock,
+  Cpu,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -33,32 +34,25 @@ import { Input } from "@/components/ui/input";
 
 const CONTACT_EMAIL = "Zachmccollum@AviationStandardGrading.com";
 
-const grades = [
-  { label: "Centering", score: "9.5" },
-  { label: "Surface", score: "10" },
-  { label: "Edges", score: "9" },
-  { label: "Corners", score: "9.5" },
-];
-
 const pillars = [
   {
     title: "Precision",
-    text: "Aviation professionals are trained to catch details others overlook. That same disciplined eye drives every AGS evaluation.",
+    text: "Every decision is rooted in disciplined inspection standards inspired by aviation maintenance culture.",
     icon: Radar,
   },
   {
-    title: "Consistency",
-    text: "Every card is reviewed through a repeatable workflow rooted in standards, checkpoints, and close attention to detail.",
-    icon: ClipboardCheck,
-  },
-  {
     title: "Integrity",
-    text: "No shortcuts and no inflated promises — just honest grading built on trust, transparency, and collector confidence.",
+    text: "We believe grading should be consistent, defensible, and worthy of collector trust.",
     icon: ShieldCheck,
   },
   {
-    title: "Passion",
-    text: "AGS exists because aviation-minded professionals genuinely love Pokémon cards and the collecting community behind them.",
+    title: "Innovation",
+    text: "ASG is being built with modern verification, cert lookup, and future vault technology in mind.",
+    icon: Cpu,
+  },
+  {
+    title: "Collector Confidence",
+    text: "Premium presentation, clean labels, and traceable records are part of the ASG standard.",
     icon: HeartHandshake,
   },
 ];
@@ -67,107 +61,84 @@ const services = [
   {
     title: "Standard Grading",
     price: "$8/card",
-    desc: "Core AGS grading service designed for collectors who want clear standards, premium presentation, and reliable results.",
+    desc: "Affordable core grading built around premium standards, precise review, and collector-first presentation.",
     icon: ShieldCheck,
   },
   {
     title: "Priority Express",
     price: "$12/card",
-    desc: "Faster turnaround for collectors who need priority handling and a shorter grading window when capacity is available.",
+    desc: "Accelerated service for collectors who want faster handling once submissions reopen.",
     icon: Plane,
   },
   {
-    title: "Future Vault & Lookup",
+    title: "Certification & Vault",
     price: "Coming Soon",
-    desc: "Online certificate storage, searchable records, and scannable lookup experiences built around cert numbers and slab verification.",
+    desc: "Future-forward cert lookup, slab scanning, and online vault tools built for modern collector trust.",
     icon: Database,
   },
 ];
 
 const processSteps = [
   {
-    title: "Prepare Submission",
-    text: "Collectors choose a service level, organize their cards, and prepare the information needed for intake.",
+    title: "Submission Intake",
+    text: "Cards are logged and organized through a structured intake workflow.",
     icon: Package,
   },
   {
     title: "Detailed Inspection",
-    text: "Cards are evaluated with a trained, detail-focused eye across centering, corners, edges, and surface quality.",
+    text: "Centering, corners, edges, and surface are reviewed with standards-driven precision.",
     icon: Search,
   },
   {
     title: "Imaging & Verification",
-    text: "High-resolution scans and certification records help create traceability, authenticity, and collector confidence.",
+    text: "Certification data, imaging, and record structure support traceability and confidence.",
     icon: ScanLine,
   },
   {
     title: "Encapsulation",
-    text: "Approved grades are sealed in AGS slabs with clean labels and cert numbers collectors can reference and verify.",
+    text: "Finalized cards are sealed with a premium ASG label and cert-ready presentation.",
     icon: BadgeCheck,
   },
 ];
 
 const vaultSteps = [
   {
-    title: "Cert Number Storage",
-    text: "Each graded card will have a stored certificate record tied to its unique number.",
-    icon: BadgeCheck,
-  },
-  {
-    title: "QR / Scannable Access",
-    text: "Slabs can later use scannable certs or QR links that open the matching record page instantly.",
+    title: "Scannable Slab Records",
+    text: "ASG is being designed around future scan-ready verification and accessible certification records.",
     icon: QrCode,
   },
   {
-    title: "Online Vault Records",
-    text: "Collectors will be able to search records, verify slabs, and reference stored grading details online.",
+    title: "Secure Lookup",
+    text: "Collectors will be able to search cert IDs and verify slab details through a modern interface.",
+    icon: Lock,
+  },
+  {
+    title: "Digital Vault Vision",
+    text: "The long-term goal is an online record vault built for transparency, ownership, and trust.",
     icon: Database,
   },
 ];
 
 const faqs = [
   {
-    q: "Are you accepting submissions right now?",
-    a: "Not at this time. AGS is temporarily closed to new submissions due to manpower limits and backlog management.",
+    q: "Are submissions open right now?",
+    a: "No. ASG is temporarily not accepting new submissions because manpower and backlog capacity need to be managed carefully.",
   },
   {
-    q: "What makes AGS different?",
-    a: "AGS was built around the mindset of aviation engineers and aircraft maintenance professionals — people trained to value precision, standards, and detail. We brought that same discipline into Pokémon card grading.",
+    q: "What makes ASG different?",
+    a: "ASG is built around the mindset of aviation professionals: precision, repeatable standards, disciplined inspection, and trust-driven results.",
   },
   {
-    q: "What are your current turnaround times?",
-    a: "Current target turnaround windows are 4–6 weeks for bulk submissions and 2–3 weeks for Priority Express once submissions reopen.",
+    q: "What are your target turnaround times?",
+    a: "Bulk submissions are targeted at 4–6 weeks and Priority Express is targeted at 2–3 weeks once submissions reopen.",
   },
   {
-    q: "How will certification lookup work?",
-    a: "AGS is being built with the goal of searchable cert numbers, scannable slab verification, and a future online vault for record storage.",
-  },
-  {
-    q: "Is the lookup preview on this page live?",
-    a: "No. The current lookup section is a front-end preview that demonstrates the experience AGS plans to provide once the live cert database is connected.",
+    q: "Will cert lookup be real later?",
+    a: "Yes. The website is being designed with future cert search, slab scanning, and vault-style verification in mind.",
   },
 ];
 
-function GradeBar({ label, score }: { label: string; score: string }) {
-  const width = `${Math.min((parseFloat(score) / 10) * 100, 100)}%`;
-
-  return (
-    <div className="space-y-2">
-      <div className="flex items-center justify-between text-sm">
-        <span className="text-slate-300">{label}</span>
-        <span className="font-semibold text-white">{score}</span>
-      </div>
-      <div className="h-2 w-full rounded-full bg-slate-800">
-        <div
-          className="h-2 rounded-full bg-gradient-to-r from-sky-400 to-cyan-300"
-          style={{ width }}
-        />
-      </div>
-    </div>
-  );
-}
-
-export default function AGSWebsite() {
+export default function ASGWebsite() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cert, setCert] = useState("");
   const [copied, setCopied] = useState(false);
@@ -177,11 +148,11 @@ export default function AGSWebsite() {
 
     return {
       id: cert.toUpperCase(),
-      card: "Sample Cert Record",
-      set: "Preview Database",
-      number: "AGS-000102025",
-      finalGrade: "9.5 SAMPLE",
-      status: "Preview Result",
+      card: "ASG Preview Record",
+      set: "Certification Preview",
+      number: "ASG-000102025",
+      finalGrade: "10 GEM MINT SAMPLE",
+      status: "Verified Preview",
     };
   }, [cert]);
 
@@ -196,17 +167,15 @@ export default function AGSWebsite() {
   };
 
   const previewLookup = () => {
-    if (!cert.trim()) {
-      setCert("AGS-000102025");
-    }
+    if (!cert.trim()) setCert("ASG-000102025");
   };
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-24 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-sky-500/15 blur-3xl" />
-        <div className="absolute right-0 top-40 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl" />
-        <div className="absolute left-0 top-[30rem] h-80 w-80 rounded-full bg-blue-400/10 blur-3xl" />
+        <div className="absolute left-1/2 top-0 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-sky-500/15 blur-3xl" />
+        <div className="absolute right-0 top-52 h-96 w-96 rounded-full bg-cyan-400/10 blur-3xl" />
+        <div className="absolute left-0 top-[70rem] h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" />
       </div>
 
       <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
@@ -216,7 +185,7 @@ export default function AGSWebsite() {
               <Plane className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-lg font-black tracking-[0.24em]">AGS</p>
+              <p className="text-lg font-black tracking-[0.24em]">ASG</p>
               <p className="text-xs uppercase tracking-[0.22em] text-slate-400">
                 Aviation Standard Grading
               </p>
@@ -224,24 +193,12 @@ export default function AGSWebsite() {
           </div>
 
           <nav className="hidden items-center gap-8 md:flex">
-            <a href="#story" className="text-sm text-slate-300 transition hover:text-white">
-              Our Story
-            </a>
-            <a href="#standards" className="text-sm text-slate-300 transition hover:text-white">
-              Standards
-            </a>
-            <a href="#pricing" className="text-sm text-slate-300 transition hover:text-white">
-              Pricing
-            </a>
-            <a href="#lookup" className="text-sm text-slate-300 transition hover:text-white">
-              Lookup
-            </a>
-            <a href="#vault" className="text-sm text-slate-300 transition hover:text-white">
-              Vault
-            </a>
-            <a href="#contact" className="text-sm text-slate-300 transition hover:text-white">
-              Contact
-            </a>
+            <a href="#story" className="text-sm text-slate-300 transition hover:text-white">Our Story</a>
+            <a href="#standards" className="text-sm text-slate-300 transition hover:text-white">Standards</a>
+            <a href="#pricing" className="text-sm text-slate-300 transition hover:text-white">Pricing</a>
+            <a href="#lookup" className="text-sm text-slate-300 transition hover:text-white">Lookup</a>
+            <a href="#vault" className="text-sm text-slate-300 transition hover:text-white">Vault</a>
+            <a href="#contact" className="text-sm text-slate-300 transition hover:text-white">Contact</a>
           </nav>
 
           <div className="hidden md:block">
@@ -271,12 +228,6 @@ export default function AGSWebsite() {
               <a href="#lookup" className="text-sm text-slate-300">Lookup</a>
               <a href="#vault" className="text-sm text-slate-300">Vault</a>
               <a href="#contact" className="text-sm text-slate-300">Contact</a>
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center rounded-2xl bg-white px-4 py-2 text-sm font-medium text-slate-950 hover:bg-slate-200"
-              >
-                Join the Waitlist
-              </a>
             </div>
           </div>
         )}
@@ -286,29 +237,27 @@ export default function AGSWebsite() {
         <section className="relative">
           <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-28">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.55 }}
               className="space-y-8"
             >
               <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/20 bg-sky-400/10 px-4 py-2 text-sm text-sky-200">
-                <Wrench className="h-4 w-4" />
-                Built by aviation-minded professionals who love Pokémon
+                <Sparkles className="h-4 w-4" />
+                Precision is non-negotiable
               </div>
 
               <div className="space-y-5">
                 <h1 className="max-w-3xl text-5xl font-black leading-tight tracking-tight sm:text-6xl">
-                  Where
+                  Aviation-inspired grading,
                   <span className="bg-gradient-to-r from-sky-300 to-cyan-300 bg-clip-text text-transparent">
-                    {" "}precision is non-negotiable{" "}
+                    {" "}built for collector trust.
                   </span>
-                  and standards come first.
                 </h1>
                 <p className="max-w-2xl text-lg leading-8 text-slate-300">
-                  AGS was built around a simple idea: aviation engineers and aircraft
-                  maintenance professionals already live by precision, discipline, and
-                  standards. We took that trained eye, combined it with our love for
-                  Pokémon cards, and built a grading company collectors can trust.
+                  ASG brings disciplined standards, premium presentation, and a future-forward
+                  technology vision to card grading. Our brand is built around innovation,
+                  precision, integrity, and confidence.
                 </p>
               </div>
 
@@ -320,12 +269,11 @@ export default function AGSWebsite() {
                   Join the Waitlist
                   <ChevronRight className="ml-2 h-4 w-4" />
                 </a>
-
                 <a
                   href="#standards"
                   className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-4 text-base text-white hover:bg-white/10"
                 >
-                  Learn the AGS Standard
+                  Learn the ASG Standard
                 </a>
               </div>
 
@@ -345,23 +293,23 @@ export default function AGSWebsite() {
                 <Card className="rounded-3xl border-white/10 bg-white/5 shadow-xl shadow-black/20">
                   <CardContent className="p-5">
                     <p className="text-2xl font-black">Closed</p>
-                    <p className="text-sm text-slate-400">Submissions temporarily paused</p>
+                    <p className="text-sm text-slate-400">Submissions paused</p>
                   </CardContent>
                 </Card>
               </div>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
+              initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.65 }}
               className="relative"
             >
               <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-sky-400/20 to-cyan-300/10 blur-2xl" />
               <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70 shadow-2xl shadow-sky-950/40">
                 <img
-                  src="/ags-hero.png"
-                  alt="AGS premium graded slab hero visual"
+                  src="/asg-hero-tech.png"
+                  alt="ASG premium precision grading hero visual"
                   className="h-full w-full object-cover"
                 />
               </div>
@@ -379,9 +327,8 @@ export default function AGSWebsite() {
                 </div>
                 <h2 className="text-3xl font-black text-white">Submissions are temporarily closed</h2>
                 <p className="mt-3 leading-7 text-slate-200">
-                  AGS is not accepting new submissions at this time due to manpower
-                  limits and backlog management. You can still contact AGS for launch
-                  updates, pricing questions, and future waitlist information.
+                  ASG is not accepting new submissions right now due to manpower and backlog limits.
+                  We are building carefully so the standard stays premium.
                 </p>
               </div>
               <a
@@ -395,30 +342,25 @@ export default function AGSWebsite() {
         </section>
 
         <section id="story" className="border-y border-white/10 bg-white/[0.03]">
-          <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1fr,1.1fr] lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1fr,1.05fr] lg:px-8">
             <div className="space-y-4">
               <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">Our story</p>
               <h2 className="text-3xl font-black sm:text-4xl">
-                Built from the discipline of aviation and the love of collecting
+                A grading company shaped by real inspection culture
               </h2>
             </div>
             <div className="space-y-6 text-lg leading-8 text-slate-300">
               <p>
-                AGS began with people who spent their working lives around aircraft —
-                environments where details matter, standards matter, and precision is
-                non-negotiable. Aviation engineers and maintenance professionals are
-                trained to inspect carefully, think systematically, and never ignore
-                the small things.
+                ASG is built around the mindset of aviation professionals: strict standards,
+                measured review, and attention to details others miss.
               </p>
               <p>
-                That mindset translated naturally into Pokémon card grading. The same
-                focused eye used in aviation now helps AGS evaluate centering,
-                corners, edges, and surface condition with discipline and consistency.
+                We are taking that same culture and applying it to collector confidence —
+                from slab presentation to future cert verification and digital vault systems.
               </p>
               <p>
-                AGS is built to serve collectors who value clean presentation,
-                trustworthy grading, and a higher standard rooted in real-world
-                inspection culture.
+                This is not just a grading company. It is a brand built around trust,
+                technical discipline, and premium execution.
               </p>
             </div>
           </div>
@@ -427,9 +369,9 @@ export default function AGSWebsite() {
         <section id="standards" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="mb-10 max-w-2xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">
-              The AGS standard
+              The ASG standard
             </p>
-            <h2 className="text-3xl font-black sm:text-4xl">The values behind every grade</h2>
+            <h2 className="text-3xl font-black sm:text-4xl">Core beliefs backed by disciplined process</h2>
           </div>
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {pillars.map((pillar) => {
@@ -454,7 +396,7 @@ export default function AGSWebsite() {
         <section id="pricing" className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
           <div className="mb-10 max-w-2xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">Pricing</p>
-            <h2 className="text-3xl font-black sm:text-4xl">Real pricing and current turnaround goals</h2>
+            <h2 className="text-3xl font-black sm:text-4xl">Simple pricing. Premium standards.</h2>
           </div>
           <div className="grid gap-6 lg:grid-cols-3">
             {services.map((service) => {
@@ -473,10 +415,7 @@ export default function AGSWebsite() {
                         </span>
                       </div>
                       <p className="mt-3 flex-1 leading-7 text-slate-300">{service.desc}</p>
-                      <a
-                        href="#contact"
-                        className="mt-4 inline-flex items-center text-sky-300 hover:text-sky-200"
-                      >
+                      <a href="#contact" className="mt-4 inline-flex items-center text-sky-300 hover:text-sky-200">
                         Ask about this service <ArrowRight className="ml-1 h-4 w-4" />
                       </a>
                     </CardContent>
@@ -499,6 +438,7 @@ export default function AGSWebsite() {
                 </div>
               </CardContent>
             </Card>
+
             <Card className="rounded-[2rem] border-white/10 bg-slate-900/70">
               <CardContent className="p-7">
                 <div className="mb-4 flex items-center gap-3 text-sky-300">
@@ -506,8 +446,8 @@ export default function AGSWebsite() {
                   <h3 className="text-xl font-bold text-white">Current availability</h3>
                 </div>
                 <p className="leading-7 text-slate-300">
-                  Pricing is live, but new submissions are paused until AGS is ready to
-                  handle incoming volume without compromising quality or turnaround.
+                  Pricing is live, but submissions are paused until ASG is ready to handle demand
+                  without lowering the standard.
                 </p>
               </CardContent>
             </Card>
@@ -516,23 +456,23 @@ export default function AGSWebsite() {
 
         <section className="border-y border-white/10 bg-white/[0.03]">
           <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-            <div className="mb-12 grid gap-10 lg:grid-cols-[1fr,0.9fr] lg:items-center">
+            <div className="mb-12 grid gap-10 lg:grid-cols-[1fr,1fr] lg:items-center">
               <div>
                 <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">
                   Inspection workflow
                 </p>
                 <h2 className="text-3xl font-black sm:text-4xl">
-                  Precision means a repeatable inspection process
+                  Technology-enhanced, standards-driven inspection
                 </h2>
                 <p className="mt-4 max-w-xl text-slate-300">
-                  AGS brings a standards-driven approach to grading, built on clear
-                  checkpoints, careful review, and traceable certification.
+                  These visuals reflect the future-facing ASG vision: advanced inspection,
+                  clean encapsulation, premium presentation, and disciplined review.
                 </p>
               </div>
               <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70 shadow-xl shadow-black/20">
                 <img
-                  src="/ags-workstation.png"
-                  alt="AGS precision grading workstation"
+                  src="/asg-lab-workflow.png"
+                  alt="ASG advanced grading lab and inspection workflow"
                   className="h-full w-full object-cover"
                 />
               </div>
@@ -566,11 +506,10 @@ export default function AGSWebsite() {
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">
                 Certification lookup
               </p>
-              <h2 className="text-3xl font-black sm:text-4xl">Preview the AGS verification experience</h2>
+              <h2 className="text-3xl font-black sm:text-4xl">Built for verification, confidence, and future scanning</h2>
               <p className="mt-4 max-w-xl leading-7 text-slate-300">
-                AGS will support cert-number search and future scannable slab access.
-                This current section is a front-end preview showing how lookup results
-                can be displayed.
+                The current lookup experience is a preview, but the ASG vision includes searchable
+                cert numbers, scannable slabs, secure records, and a trusted digital vault.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -630,7 +569,7 @@ export default function AGSWebsite() {
                     </div>
                   ) : (
                     <div className="rounded-3xl border border-dashed border-white/10 bg-white/[0.03] p-8 text-center text-slate-400">
-                      Search a sample cert number to preview the AGS verification layout.
+                      Search a sample cert number to preview the ASG verification layout.
                     </div>
                   )}
                 </CardContent>
@@ -639,8 +578,8 @@ export default function AGSWebsite() {
 
             <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70 shadow-xl shadow-black/20">
               <img
-                src="/ags-vault.png"
-                alt="AGS certificate lookup and vault visual"
+                src="/asg-vault-tech.png"
+                alt="ASG certification lookup and digital vault technology"
                 className="h-full w-full object-cover"
               />
             </div>
@@ -653,9 +592,10 @@ export default function AGSWebsite() {
               Future cert vault
             </p>
             <h2 className="text-3xl font-black sm:text-4xl">
-              Built for searchable certs, scannable slabs, and stored records
+              Searchable certs. Scannable slabs. Secure records.
             </h2>
           </div>
+
           <div className="grid gap-6 lg:grid-cols-3">
             {vaultSteps.map((step) => {
               const Icon = step.icon;
@@ -672,32 +612,6 @@ export default function AGSWebsite() {
               );
             })}
           </div>
-
-          <Card className="mt-8 rounded-[2rem] border-white/10 bg-slate-900/70">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-black">What this means for AGS next</h3>
-              <p className="mt-4 max-w-3xl leading-7 text-slate-300">
-                The next phase is connecting this front-end to a real cert database so
-                each slab can have a stored record page. That would allow AGS to link
-                cert numbers, future QR scans, and vault-style lookup into one live
-                system.
-              </p>
-              <div className="mt-6 flex flex-col gap-4 sm:flex-row">
-                <a
-                  href="#contact"
-                  className="inline-flex items-center justify-center rounded-2xl bg-white px-6 py-3 font-medium text-slate-950 hover:bg-slate-200"
-                >
-                  Ask About Vault Development
-                </a>
-                <a
-                  href="#lookup"
-                  className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-3 font-medium text-white hover:bg-white/10"
-                >
-                  View Lookup Preview
-                </a>
-              </div>
-            </CardContent>
-          </Card>
         </section>
 
         <section id="contact" className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
@@ -705,13 +619,12 @@ export default function AGSWebsite() {
             <Card className="rounded-[2rem] border-white/10 bg-white/5 shadow-xl shadow-black/20">
               <CardContent className="p-8">
                 <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">
-                  Contact AGS
+                  Contact ASG
                 </p>
                 <h2 className="text-3xl font-black sm:text-4xl">Join the waitlist or ask a question</h2>
                 <p className="mt-4 max-w-2xl leading-7 text-slate-300">
-                  AGS is currently based in Tulsa, Oklahoma. New submissions are paused,
-                  but you can reach out for launch updates, future availability, and
-                  grading questions.
+                  ASG is based in Tulsa, Oklahoma. Reach out for future availability,
+                  launch updates, pricing questions, or certification technology interest.
                 </p>
 
                 <div className="mt-8 space-y-4">
@@ -733,7 +646,7 @@ export default function AGSWebsite() {
 
                   <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:flex-wrap">
                     <a
-                      href={`mailto:${CONTACT_EMAIL}?subject=AGS%20Waitlist%20Request`}
+                      href={`mailto:${CONTACT_EMAIL}?subject=ASG%20Waitlist%20Request`}
                       className="inline-flex items-center justify-center rounded-2xl bg-white px-6 py-3 font-medium text-slate-950 hover:bg-slate-200"
                     >
                       Open Email App
@@ -786,7 +699,7 @@ export default function AGSWebsite() {
               <Plane className="h-5 w-5" />
             </div>
             <div>
-              <p className="font-black tracking-[0.24em]">AGS</p>
+              <p className="font-black tracking-[0.24em]">ASG</p>
               <p className="text-sm text-slate-400">Aviation Standard Grading</p>
             </div>
           </div>
@@ -799,7 +712,7 @@ export default function AGSWebsite() {
             <a href="#contact" className="hover:text-white">Contact</a>
           </div>
 
-          <p className="text-sm text-slate-500">© 2026 AGS — Aviation Standard Grading</p>
+          <p className="text-sm text-slate-500">© 2026 ASG — Aviation Standard Grading</p>
         </div>
       </footer>
     </div>
