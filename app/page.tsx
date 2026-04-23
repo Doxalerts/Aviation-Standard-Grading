@@ -12,7 +12,6 @@ import {
   Menu,
   X,
   ChevronRight,
-  ClipboardCheck,
   Radar,
   HeartHandshake,
   Mail,
@@ -171,34 +170,34 @@ export default function ASGWebsite() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen bg-[#030b1d] text-white">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute left-1/2 top-0 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-sky-500/15 blur-3xl" />
         <div className="absolute right-0 top-52 h-96 w-96 rounded-full bg-cyan-400/10 blur-3xl" />
         <div className="absolute left-0 top-[70rem] h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" />
       </div>
 
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#030b1d]/85 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-cyan-300 text-slate-950 shadow-lg shadow-sky-500/20">
               <Plane className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-lg font-black tracking-[0.24em]">ASG</p>
-              <p className="text-xs uppercase tracking-[0.22em] text-slate-400">
+              <p className="text-lg font-black tracking-[0.24em] text-white">ASG</p>
+              <p className="text-xs uppercase tracking-[0.22em] text-slate-300">
                 Aviation Standard Grading
               </p>
             </div>
           </div>
 
           <nav className="hidden items-center gap-8 md:flex">
-            <a href="#story" className="text-sm text-slate-300 transition hover:text-white">Our Story</a>
-            <a href="#standards" className="text-sm text-slate-300 transition hover:text-white">Standards</a>
-            <a href="#pricing" className="text-sm text-slate-300 transition hover:text-white">Pricing</a>
-            <a href="#lookup" className="text-sm text-slate-300 transition hover:text-white">Lookup</a>
-            <a href="#vault" className="text-sm text-slate-300 transition hover:text-white">Vault</a>
-            <a href="#contact" className="text-sm text-slate-300 transition hover:text-white">Contact</a>
+            <a href="#story" className="text-sm text-slate-200 transition hover:text-white">Our Story</a>
+            <a href="#standards" className="text-sm text-slate-200 transition hover:text-white">Standards</a>
+            <a href="#pricing" className="text-sm text-slate-200 transition hover:text-white">Pricing</a>
+            <a href="#lookup" className="text-sm text-slate-200 transition hover:text-white">Lookup</a>
+            <a href="#vault" className="text-sm text-slate-200 transition hover:text-white">Vault</a>
+            <a href="#contact" className="text-sm text-slate-200 transition hover:text-white">Contact</a>
           </nav>
 
           <div className="hidden md:block">
@@ -212,7 +211,7 @@ export default function ASGWebsite() {
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="rounded-xl border border-white/10 p-2 text-slate-200 md:hidden"
+            className="rounded-xl border border-white/10 p-2 text-slate-100 md:hidden"
             aria-label="Toggle menu"
           >
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -222,18 +221,18 @@ export default function ASGWebsite() {
         {menuOpen && (
           <div className="border-t border-white/10 md:hidden">
             <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 lg:px-8">
-              <a href="#story" className="text-sm text-slate-300">Our Story</a>
-              <a href="#standards" className="text-sm text-slate-300">Standards</a>
-              <a href="#pricing" className="text-sm text-slate-300">Pricing</a>
-              <a href="#lookup" className="text-sm text-slate-300">Lookup</a>
-              <a href="#vault" className="text-sm text-slate-300">Vault</a>
-              <a href="#contact" className="text-sm text-slate-300">Contact</a>
+              <a href="#story" className="text-sm text-slate-200">Our Story</a>
+              <a href="#standards" className="text-sm text-slate-200">Standards</a>
+              <a href="#pricing" className="text-sm text-slate-200">Pricing</a>
+              <a href="#lookup" className="text-sm text-slate-200">Lookup</a>
+              <a href="#vault" className="text-sm text-slate-200">Vault</a>
+              <a href="#contact" className="text-sm text-slate-200">Contact</a>
             </div>
           </div>
         )}
       </header>
 
-      <main>
+      <main className="relative z-10 text-white">
         <section className="relative">
           <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-28">
             <motion.div
@@ -248,13 +247,13 @@ export default function ASGWebsite() {
               </div>
 
               <div className="space-y-5">
-                <h1 className="max-w-3xl text-5xl font-black leading-tight tracking-tight sm:text-6xl">
+                <h1 className="max-w-3xl text-5xl font-black leading-tight tracking-tight text-white sm:text-6xl">
                   Aviation-inspired grading,
                   <span className="bg-gradient-to-r from-sky-300 to-cyan-300 bg-clip-text text-transparent">
                     {" "}built for collector trust.
                   </span>
                 </h1>
-                <p className="max-w-2xl text-lg leading-8 text-slate-300">
+                <p className="max-w-2xl text-lg leading-8 text-slate-200">
                   ASG brings disciplined standards, premium presentation, and a future-forward
                   technology vision to card grading. Our brand is built around innovation,
                   precision, integrity, and confidence.
@@ -278,24 +277,20 @@ export default function ASGWebsite() {
               </div>
 
               <div className="grid max-w-2xl grid-cols-1 gap-4 pt-4 sm:grid-cols-3">
-                <Card className="rounded-3xl border-white/10 bg-white/5 shadow-xl shadow-black/20">
-                  <CardContent className="p-5">
-                    <p className="text-2xl font-black">$8</p>
-                    <p className="text-sm text-slate-400">Standard grading</p>
-                  </CardContent>
-                </Card>
-                <Card className="rounded-3xl border-white/10 bg-white/5 shadow-xl shadow-black/20">
-                  <CardContent className="p-5">
-                    <p className="text-2xl font-black">$12</p>
-                    <p className="text-sm text-slate-400">Priority Express</p>
-                  </CardContent>
-                </Card>
-                <Card className="rounded-3xl border-white/10 bg-white/5 shadow-xl shadow-black/20">
-                  <CardContent className="p-5">
-                    <p className="text-2xl font-black">Closed</p>
-                    <p className="text-sm text-slate-400">Submissions paused</p>
-                  </CardContent>
-                </Card>
+                <div className="rounded-[28px] border border-white/10 bg-white/5 p-8 text-white shadow-[0_0_30px_rgba(0,140,255,0.08)] backdrop-blur-sm">
+                  <div className="text-4xl font-semibold tracking-tight text-white">$8</div>
+                  <p className="mt-3 text-base text-slate-200">Standard grading</p>
+                </div>
+
+                <div className="rounded-[28px] border border-white/10 bg-white/5 p-8 text-white shadow-[0_0_30px_rgba(0,140,255,0.08)] backdrop-blur-sm">
+                  <div className="text-4xl font-semibold tracking-tight text-white">$12</div>
+                  <p className="mt-3 text-base text-slate-200">Priority Express</p>
+                </div>
+
+                <div className="rounded-[28px] border border-white/10 bg-white/5 p-8 text-white shadow-[0_0_30px_rgba(0,140,255,0.08)] backdrop-blur-sm">
+                  <div className="text-4xl font-semibold tracking-tight text-white">Closed</div>
+                  <p className="mt-3 text-base text-slate-200">Submissions paused</p>
+                </div>
               </div>
             </motion.div>
 
@@ -318,7 +313,7 @@ export default function ASGWebsite() {
         </section>
 
         <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-          <Card className="overflow-hidden rounded-[2rem] border-amber-400/20 bg-amber-400/10">
+          <Card className="overflow-hidden rounded-[2rem] border-amber-400/20 bg-amber-400/10 backdrop-blur-sm">
             <CardContent className="flex flex-col gap-5 p-8 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-3xl">
                 <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-amber-300/20 bg-black/10 px-3 py-1 text-sm text-amber-100">
@@ -326,7 +321,7 @@ export default function ASGWebsite() {
                   Submission Status
                 </div>
                 <h2 className="text-3xl font-black text-white">Submissions are temporarily closed</h2>
-                <p className="mt-3 leading-7 text-slate-200">
+                <p className="mt-3 leading-7 text-slate-100">
                   ASG is not accepting new submissions right now due to manpower and backlog limits.
                   We are building carefully so the standard stays premium.
                 </p>
@@ -345,11 +340,11 @@ export default function ASGWebsite() {
           <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1fr,1.05fr] lg:px-8">
             <div className="space-y-4">
               <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">Our story</p>
-              <h2 className="text-3xl font-black sm:text-4xl">
+              <h2 className="text-3xl font-black text-white sm:text-4xl">
                 A grading company shaped by real inspection culture
               </h2>
             </div>
-            <div className="space-y-6 text-lg leading-8 text-slate-300">
+            <div className="space-y-6 text-lg leading-8 text-slate-200">
               <p>
                 ASG is built around the mindset of aviation professionals: strict standards,
                 measured review, and attention to details others miss.
@@ -371,20 +366,20 @@ export default function ASGWebsite() {
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">
               The ASG standard
             </p>
-            <h2 className="text-3xl font-black sm:text-4xl">Core beliefs backed by disciplined process</h2>
+            <h2 className="text-3xl font-black text-white sm:text-4xl">Core beliefs backed by disciplined process</h2>
           </div>
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {pillars.map((pillar) => {
               const Icon = pillar.icon;
               return (
                 <motion.div key={pillar.title} whileHover={{ y: -6 }} transition={{ duration: 0.2 }}>
-                  <Card className="h-full rounded-[2rem] border-white/10 bg-white/5 shadow-xl shadow-black/20">
+                  <Card className="h-full rounded-[2rem] border-white/10 bg-white/5 backdrop-blur-sm shadow-xl shadow-black/20">
                     <CardContent className="p-7">
                       <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-400/10 text-sky-300">
                         <Icon className="h-6 w-6" />
                       </div>
-                      <h3 className="text-xl font-bold">{pillar.title}</h3>
-                      <p className="mt-3 leading-7 text-slate-300">{pillar.text}</p>
+                      <h3 className="text-xl font-bold text-white">{pillar.title}</h3>
+                      <p className="mt-3 leading-7 text-slate-200">{pillar.text}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -396,25 +391,25 @@ export default function ASGWebsite() {
         <section id="pricing" className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
           <div className="mb-10 max-w-2xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">Pricing</p>
-            <h2 className="text-3xl font-black sm:text-4xl">Simple pricing. Premium standards.</h2>
+            <h2 className="text-3xl font-black text-white sm:text-4xl">Simple pricing. Premium standards.</h2>
           </div>
           <div className="grid gap-6 lg:grid-cols-3">
             {services.map((service) => {
               const Icon = service.icon;
               return (
                 <motion.div key={service.title} whileHover={{ y: -6 }} transition={{ duration: 0.2 }}>
-                  <Card className="h-full rounded-[2rem] border-white/10 bg-white/5 shadow-xl shadow-black/20">
+                  <Card className="h-full rounded-[2rem] border-white/10 bg-white/5 backdrop-blur-sm shadow-xl shadow-black/20">
                     <CardContent className="flex h-full flex-col p-7">
                       <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-400/10 text-sky-300">
                         <Icon className="h-6 w-6" />
                       </div>
                       <div className="mb-2 flex items-center justify-between gap-4">
-                        <h3 className="text-xl font-bold">{service.title}</h3>
-                        <span className="rounded-full bg-white/10 px-3 py-1 text-sm text-slate-200">
+                        <h3 className="text-xl font-bold text-white">{service.title}</h3>
+                        <span className="rounded-full bg-white/10 px-3 py-1 text-sm text-slate-100">
                           {service.price}
                         </span>
                       </div>
-                      <p className="mt-3 flex-1 leading-7 text-slate-300">{service.desc}</p>
+                      <p className="mt-3 flex-1 leading-7 text-slate-200">{service.desc}</p>
                       <a href="#contact" className="mt-4 inline-flex items-center text-sky-300 hover:text-sky-200">
                         Ask about this service <ArrowRight className="ml-1 h-4 w-4" />
                       </a>
@@ -426,26 +421,26 @@ export default function ASGWebsite() {
           </div>
 
           <div className="mt-8 grid gap-6 md:grid-cols-2">
-            <Card className="rounded-[2rem] border-white/10 bg-slate-900/70">
+            <Card className="rounded-[2rem] border-white/10 bg-slate-900/70 backdrop-blur-sm">
               <CardContent className="p-7">
                 <div className="mb-4 flex items-center gap-3 text-sky-300">
                   <Clock3 className="h-5 w-5" />
                   <h3 className="text-xl font-bold text-white">Turnaround goals</h3>
                 </div>
-                <div className="space-y-3 text-slate-300">
+                <div className="space-y-3 text-slate-200">
                   <p><span className="font-semibold text-white">Bulk:</span> 4–6 weeks</p>
                   <p><span className="font-semibold text-white">Priority Express:</span> 2–3 weeks</p>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="rounded-[2rem] border-white/10 bg-slate-900/70">
+            <Card className="rounded-[2rem] border-white/10 bg-slate-900/70 backdrop-blur-sm">
               <CardContent className="p-7">
                 <div className="mb-4 flex items-center gap-3 text-sky-300">
                   <AlertTriangle className="h-5 w-5" />
                   <h3 className="text-xl font-bold text-white">Current availability</h3>
                 </div>
-                <p className="leading-7 text-slate-300">
+                <p className="leading-7 text-slate-200">
                   Pricing is live, but submissions are paused until ASG is ready to handle demand
                   without lowering the standard.
                 </p>
@@ -461,10 +456,10 @@ export default function ASGWebsite() {
                 <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">
                   Inspection workflow
                 </p>
-                <h2 className="text-3xl font-black sm:text-4xl">
+                <h2 className="text-3xl font-black text-white sm:text-4xl">
                   Technology-enhanced, standards-driven inspection
                 </h2>
-                <p className="mt-4 max-w-xl text-slate-300">
+                <p className="mt-4 max-w-xl text-slate-200">
                   These visuals reflect the future-facing ASG vision: advanced inspection,
                   clean encapsulation, premium presentation, and disciplined review.
                 </p>
@@ -482,7 +477,7 @@ export default function ASGWebsite() {
               {processSteps.map((step, index) => {
                 const Icon = step.icon;
                 return (
-                  <Card key={step.title} className="rounded-[2rem] border-white/10 bg-slate-900/70">
+                  <Card key={step.title} className="rounded-[2rem] border-white/10 bg-slate-900/70 backdrop-blur-sm">
                     <CardContent className="p-6">
                       <div className="mb-5 flex items-center justify-between">
                         <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5 text-sky-300">
@@ -490,8 +485,8 @@ export default function ASGWebsite() {
                         </div>
                         <span className="text-4xl font-black text-white/10">0{index + 1}</span>
                       </div>
-                      <h3 className="text-xl font-bold">{step.title}</h3>
-                      <p className="mt-3 leading-7 text-slate-300">{step.text}</p>
+                      <h3 className="text-xl font-bold text-white">{step.title}</h3>
+                      <p className="mt-3 leading-7 text-slate-200">{step.text}</p>
                     </CardContent>
                   </Card>
                 );
@@ -506,8 +501,8 @@ export default function ASGWebsite() {
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">
                 Certification lookup
               </p>
-              <h2 className="text-3xl font-black sm:text-4xl">Built for verification, confidence, and future scanning</h2>
-              <p className="mt-4 max-w-xl leading-7 text-slate-300">
+              <h2 className="text-3xl font-black text-white sm:text-4xl">Built for verification, confidence, and future scanning</h2>
+              <p className="mt-4 max-w-xl leading-7 text-slate-200">
                 The current lookup experience is a preview, but the ASG vision includes searchable
                 cert numbers, scannable slabs, secure records, and a trusted digital vault.
               </p>
@@ -517,7 +512,7 @@ export default function ASGWebsite() {
                   value={cert}
                   onChange={(e) => setCert(e.target.value)}
                   placeholder="Enter a sample certification number"
-                  className="h-12 rounded-2xl border-white/10 bg-white/5 text-white placeholder:text-slate-500"
+                  className="h-12 rounded-2xl border-white/10 bg-white/5 text-white placeholder:text-slate-400"
                 />
                 <Button
                   type="button"
@@ -528,15 +523,15 @@ export default function ASGWebsite() {
                 </Button>
               </div>
 
-              <Card className="mt-6 rounded-[2rem] border-white/10 bg-slate-900/70">
+              <Card className="mt-6 rounded-[2rem] border-white/10 bg-slate-900/70 backdrop-blur-sm">
                 <CardContent className="p-7">
                   <div className="mb-4 flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-400/10 text-emerald-300">
                       <BadgeCheck className="h-6 w-6" />
                     </div>
                     <div>
-                      <p className="text-sm text-slate-400">Lookup result</p>
-                      <p className="text-lg font-bold">
+                      <p className="text-sm text-slate-300">Lookup result</p>
+                      <p className="text-lg font-bold text-white">
                         {certResult ? certResult.status : "Waiting for certification number"}
                       </p>
                     </div>
@@ -545,30 +540,30 @@ export default function ASGWebsite() {
                   {certResult ? (
                     <div className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-5 text-sm">
                       <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                        <span className="text-slate-400">Certification</span>
-                        <span className="font-semibold">{certResult.id}</span>
+                        <span className="text-slate-300">Certification</span>
+                        <span className="font-semibold text-white">{certResult.id}</span>
                       </div>
                       <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                        <span className="text-slate-400">Card</span>
-                        <span className="font-semibold">{certResult.card}</span>
+                        <span className="text-slate-300">Card</span>
+                        <span className="font-semibold text-white">{certResult.card}</span>
                       </div>
                       <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                        <span className="text-slate-400">Set</span>
-                        <span className="font-semibold">{certResult.set}</span>
+                        <span className="text-slate-300">Set</span>
+                        <span className="font-semibold text-white">{certResult.set}</span>
                       </div>
                       <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                        <span className="text-slate-400">Number</span>
-                        <span className="font-semibold">{certResult.number}</span>
+                        <span className="text-slate-300">Number</span>
+                        <span className="font-semibold text-white">{certResult.number}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-slate-400">Grade</span>
+                        <span className="text-slate-300">Grade</span>
                         <span className="rounded-full bg-sky-400/10 px-3 py-1 font-semibold text-sky-200">
                           {certResult.finalGrade}
                         </span>
                       </div>
                     </div>
                   ) : (
-                    <div className="rounded-3xl border border-dashed border-white/10 bg-white/[0.03] p-8 text-center text-slate-400">
+                    <div className="rounded-3xl border border-dashed border-white/10 bg-white/[0.03] p-8 text-center text-slate-300">
                       Search a sample cert number to preview the ASG verification layout.
                     </div>
                   )}
@@ -591,7 +586,7 @@ export default function ASGWebsite() {
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">
               Future cert vault
             </p>
-            <h2 className="text-3xl font-black sm:text-4xl">
+            <h2 className="text-3xl font-black text-white sm:text-4xl">
               Searchable certs. Scannable slabs. Secure records.
             </h2>
           </div>
@@ -600,13 +595,13 @@ export default function ASGWebsite() {
             {vaultSteps.map((step) => {
               const Icon = step.icon;
               return (
-                <Card key={step.title} className="rounded-[2rem] border-white/10 bg-white/5 shadow-xl shadow-black/20">
+                <Card key={step.title} className="rounded-[2rem] border-white/10 bg-white/5 backdrop-blur-sm shadow-xl shadow-black/20">
                   <CardContent className="p-7">
                     <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-400/10 text-sky-300">
                       <Icon className="h-6 w-6" />
                     </div>
-                    <h3 className="text-xl font-bold">{step.title}</h3>
-                    <p className="mt-3 leading-7 text-slate-300">{step.text}</p>
+                    <h3 className="text-xl font-bold text-white">{step.title}</h3>
+                    <p className="mt-3 leading-7 text-slate-200">{step.text}</p>
                   </CardContent>
                 </Card>
               );
@@ -616,13 +611,13 @@ export default function ASGWebsite() {
 
         <section id="contact" className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[1fr,0.9fr]">
-            <Card className="rounded-[2rem] border-white/10 bg-white/5 shadow-xl shadow-black/20">
+            <Card className="rounded-[2rem] border-white/10 bg-white/5 backdrop-blur-sm shadow-xl shadow-black/20">
               <CardContent className="p-8">
                 <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">
                   Contact ASG
                 </p>
-                <h2 className="text-3xl font-black sm:text-4xl">Join the waitlist or ask a question</h2>
-                <p className="mt-4 max-w-2xl leading-7 text-slate-300">
+                <h2 className="text-3xl font-black text-white sm:text-4xl">Join the waitlist or ask a question</h2>
+                <p className="mt-4 max-w-2xl leading-7 text-slate-200">
                   ASG is based in Tulsa, Oklahoma. Reach out for future availability,
                   launch updates, pricing questions, or certification technology interest.
                 </p>
@@ -632,7 +627,7 @@ export default function ASGWebsite() {
                     <Mail className="mt-1 h-5 w-5 text-sky-300" />
                     <div className="min-w-0">
                       <p className="font-semibold text-white">Email</p>
-                      <p className="break-all text-slate-300">{CONTACT_EMAIL}</p>
+                      <p className="break-all text-slate-200">{CONTACT_EMAIL}</p>
                     </div>
                   </div>
 
@@ -640,7 +635,7 @@ export default function ASGWebsite() {
                     <MapPin className="mt-1 h-5 w-5 text-sky-300" />
                     <div>
                       <p className="font-semibold text-white">Location</p>
-                      <p className="text-slate-300">Tulsa, Oklahoma</p>
+                      <p className="text-slate-200">Tulsa, Oklahoma</p>
                     </div>
                   </div>
 
@@ -674,15 +669,15 @@ export default function ASGWebsite() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-[2rem] border-white/10 bg-slate-900/70">
+            <Card className="rounded-[2rem] border-white/10 bg-slate-900/70 backdrop-blur-sm">
               <CardContent className="p-8">
                 <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">FAQ</p>
-                <h3 className="mt-2 text-2xl font-black">Questions collectors ask first</h3>
+                <h3 className="mt-2 text-2xl font-black text-white">Questions collectors ask first</h3>
                 <div className="mt-6 space-y-4">
                   {faqs.map((item) => (
                     <div key={item.q} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-                      <h4 className="text-lg font-bold">{item.q}</h4>
-                      <p className="mt-3 leading-7 text-slate-300">{item.a}</p>
+                      <h4 className="text-lg font-bold text-white">{item.q}</h4>
+                      <p className="mt-3 leading-7 text-slate-200">{item.a}</p>
                     </div>
                   ))}
                 </div>
@@ -692,19 +687,19 @@ export default function ASGWebsite() {
         </section>
       </main>
 
-      <footer className="border-t border-white/10 bg-slate-950">
+      <footer className="border-t border-white/10 bg-[#030b1d]">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-10 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-cyan-300 text-slate-950">
               <Plane className="h-5 w-5" />
             </div>
             <div>
-              <p className="font-black tracking-[0.24em]">ASG</p>
-              <p className="text-sm text-slate-400">Aviation Standard Grading</p>
+              <p className="font-black tracking-[0.24em] text-white">ASG</p>
+              <p className="text-sm text-slate-300">Aviation Standard Grading</p>
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-6 text-sm text-slate-400">
+          <div className="flex flex-wrap gap-6 text-sm text-slate-300">
             <a href="#story" className="hover:text-white">Our Story</a>
             <a href="#pricing" className="hover:text-white">Pricing</a>
             <a href="#lookup" className="hover:text-white">Lookup</a>
@@ -712,7 +707,7 @@ export default function ASGWebsite() {
             <a href="#contact" className="hover:text-white">Contact</a>
           </div>
 
-          <p className="text-sm text-slate-500">© 2026 ASG — Aviation Standard Grading</p>
+          <p className="text-sm text-slate-400">© 2026 ASG — Aviation Standard Grading</p>
         </div>
       </footer>
     </div>
