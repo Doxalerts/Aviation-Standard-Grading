@@ -177,9 +177,9 @@ export default function AGSWebsite() {
 
     return {
       id: cert.toUpperCase(),
-      card: "Sample Charizard Holo",
-      set: "Sample Base Set",
-      number: "4/102",
+      card: "Sample Cert Record",
+      set: "Preview Database",
+      number: "AGS-000102025",
       finalGrade: "9.5 SAMPLE",
       status: "Preview Result",
     };
@@ -300,9 +300,9 @@ export default function AGSWebsite() {
                 <h1 className="max-w-3xl text-5xl font-black leading-tight tracking-tight sm:text-6xl">
                   Where
                   <span className="bg-gradient-to-r from-sky-300 to-cyan-300 bg-clip-text text-transparent">
-                    {" "}aviation standards{" "}
+                    {" "}precision is non-negotiable{" "}
                   </span>
-                  meet Pokémon passion.
+                  and standards come first.
                 </h1>
                 <p className="max-w-2xl text-lg leading-8 text-slate-300">
                   AGS was built around a simple idea: aviation engineers and aircraft
@@ -358,50 +358,13 @@ export default function AGSWebsite() {
               className="relative"
             >
               <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-sky-400/20 to-cyan-300/10 blur-2xl" />
-              <Card className="relative overflow-hidden rounded-[2rem] border-white/10 bg-slate-900/90 shadow-2xl shadow-sky-950/40">
-                <CardContent className="p-6 sm:p-8">
-                  <div className="mb-4 flex items-center justify-between">
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.24em] text-sky-300">
-                        AGS Sample Inspection Preview
-                      </p>
-                      <h3 className="mt-1 text-2xl font-black">Pikachu VMAX</h3>
-                    </div>
-                    <div className="rounded-2xl bg-white px-4 py-3 text-right text-slate-950">
-                      <p className="text-xs font-semibold uppercase tracking-wide">
-                        Sample Grade
-                      </p>
-                      <p className="text-3xl font-black">9.5</p>
-                    </div>
-                  </div>
-
-                  <div className="mb-5 rounded-[1.75rem] border border-white/10 bg-gradient-to-b from-slate-800 to-slate-900 p-5">
-                    <div className="mb-5 grid grid-cols-2 gap-3 text-sm text-slate-300">
-                      <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                        <p className="text-slate-400">Set</p>
-                        <p className="mt-1 font-semibold text-white">Vivid Voltage</p>
-                      </div>
-                      <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                        <p className="text-slate-400">Card No.</p>
-                        <p className="mt-1 font-semibold text-white">044/185</p>
-                      </div>
-                    </div>
-
-                    <div className="space-y-4 rounded-3xl border border-white/10 bg-black/20 p-5">
-                      {grades.map((g) => (
-                        <GradeBar key={g.label} {...g} />
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="rounded-3xl border border-sky-400/15 bg-sky-400/5 p-5">
-                    <p className="text-sm leading-7 text-slate-300">
-                      This is a visual sample showing how AGS grading details may be
-                      presented once the live cert system is connected.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70 shadow-2xl shadow-sky-950/40">
+                <img
+                  src="/ags-hero.png"
+                  alt="AGS premium graded slab hero visual"
+                  className="h-full w-full object-cover"
+                />
+              </div>
             </motion.div>
           </div>
         </section>
@@ -553,20 +516,28 @@ export default function AGSWebsite() {
 
         <section className="border-y border-white/10 bg-white/[0.03]">
           <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-            <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-2xl">
+            <div className="mb-12 grid gap-10 lg:grid-cols-[1fr,0.9fr] lg:items-center">
+              <div>
                 <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">
                   Inspection workflow
                 </p>
                 <h2 className="text-3xl font-black sm:text-4xl">
-                  A repeatable process inspired by real-world inspection culture
+                  Precision means a repeatable inspection process
                 </h2>
+                <p className="mt-4 max-w-xl text-slate-300">
+                  AGS brings a standards-driven approach to grading, built on clear
+                  checkpoints, careful review, and traceable certification.
+                </p>
               </div>
-              <p className="max-w-xl text-slate-300">
-                AGS brings a standards-driven approach to grading, built on clear
-                checkpoints, careful review, and traceable certification.
-              </p>
+              <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70 shadow-xl shadow-black/20">
+                <img
+                  src="/ags-workstation.png"
+                  alt="AGS precision grading workstation"
+                  className="h-full w-full object-cover"
+                />
+              </div>
             </div>
+
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
               {processSteps.map((step, index) => {
                 const Icon = step.icon;
@@ -590,7 +561,7 @@ export default function AGSWebsite() {
         </section>
 
         <section id="lookup" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
+          <div className="grid gap-8 lg:grid-cols-[1fr,1fr]">
             <div>
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">
                 Certification lookup
@@ -617,54 +588,62 @@ export default function AGSWebsite() {
                   Preview Lookup
                 </Button>
               </div>
+
+              <Card className="mt-6 rounded-[2rem] border-white/10 bg-slate-900/70">
+                <CardContent className="p-7">
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-400/10 text-emerald-300">
+                      <BadgeCheck className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-400">Lookup result</p>
+                      <p className="text-lg font-bold">
+                        {certResult ? certResult.status : "Waiting for certification number"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {certResult ? (
+                    <div className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-5 text-sm">
+                      <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                        <span className="text-slate-400">Certification</span>
+                        <span className="font-semibold">{certResult.id}</span>
+                      </div>
+                      <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                        <span className="text-slate-400">Card</span>
+                        <span className="font-semibold">{certResult.card}</span>
+                      </div>
+                      <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                        <span className="text-slate-400">Set</span>
+                        <span className="font-semibold">{certResult.set}</span>
+                      </div>
+                      <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                        <span className="text-slate-400">Number</span>
+                        <span className="font-semibold">{certResult.number}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-slate-400">Grade</span>
+                        <span className="rounded-full bg-sky-400/10 px-3 py-1 font-semibold text-sky-200">
+                          {certResult.finalGrade}
+                        </span>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="rounded-3xl border border-dashed border-white/10 bg-white/[0.03] p-8 text-center text-slate-400">
+                      Search a sample cert number to preview the AGS verification layout.
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
             </div>
 
-            <Card className="rounded-[2rem] border-white/10 bg-gradient-to-b from-slate-900 to-slate-950 shadow-xl shadow-black/20">
-              <CardContent className="p-7">
-                <div className="mb-4 flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-400/10 text-emerald-300">
-                    <BadgeCheck className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-slate-400">Lookup result</p>
-                    <p className="text-lg font-bold">
-                      {certResult ? certResult.status : "Waiting for certification number"}
-                    </p>
-                  </div>
-                </div>
-
-                {certResult ? (
-                  <div className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-5 text-sm">
-                    <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                      <span className="text-slate-400">Certification</span>
-                      <span className="font-semibold">{certResult.id}</span>
-                    </div>
-                    <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                      <span className="text-slate-400">Card</span>
-                      <span className="font-semibold">{certResult.card}</span>
-                    </div>
-                    <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                      <span className="text-slate-400">Set</span>
-                      <span className="font-semibold">{certResult.set}</span>
-                    </div>
-                    <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                      <span className="text-slate-400">Number</span>
-                      <span className="font-semibold">{certResult.number}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-slate-400">Grade</span>
-                      <span className="rounded-full bg-sky-400/10 px-3 py-1 font-semibold text-sky-200">
-                        {certResult.finalGrade}
-                      </span>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="rounded-3xl border border-dashed border-white/10 bg-white/[0.03] p-8 text-center text-slate-400">
-                    Search a sample cert number to preview the AGS verification layout.
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+            <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70 shadow-xl shadow-black/20">
+              <img
+                src="/ags-vault.png"
+                alt="AGS certificate lookup and vault visual"
+                className="h-full w-full object-cover"
+              />
+            </div>
           </div>
         </section>
 
