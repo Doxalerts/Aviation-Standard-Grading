@@ -243,4 +243,7 @@ function ImageCard({ src, title }: { src: string; title: string }) {
       </div>
     </div>
   );
-}
+}<div className="grid gap-6 md:grid-cols-2">
+  <ImageCard src="/asg-card-showcase.png" title="ASG Graded Card Showcase" />
+  <ImageCard src="/asg-card-showcase2.png" title="ASG Featured Slab Examples" />
+</div>
