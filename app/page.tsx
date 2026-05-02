@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-const ASG_EMAIL = "contact@aviationstandardgrading.com";
+const ASG_EMAIL = "Zachmccollum@AviationStandardGrading.com";
 
 export default function Home() {
   const [cert, setCert] = useState("");
@@ -11,144 +11,179 @@ export default function Home() {
 
   function lookupCert() {
     if (!cert.trim()) {
-      setResult("Please enter a certification number.");
+      setResult("Enter a certification number.");
       return;
     }
 
-    setResult(`Cert lookup request received for: ${cert}. ASG vault connection coming soon.`);
-  }
-
-  function copyEmail() {
-    navigator.clipboard.writeText(ASG_EMAIL);
-    alert("ASG email copied.");
+    setResult(`Cert #${cert} is not currently in the ASG online vault yet.`);
   }
 
   return (
-    <main className="min-h-screen bg-[#050b18] text-white">
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#050b18]/95 px-8 py-5">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <a href="#home" className="text-4xl font-black tracking-[0.35em]">
+    <main className="min-h-screen bg-[#020817] text-white">
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#020817]/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-5">
+          <a href="#" className="text-4xl font-black tracking-tight">
             ASG
           </a>
 
-          <nav className="hidden gap-6 text-sm text-blue-100 md:flex">
-            <a href="#about">About</a>
+          <nav className="hidden gap-8 font-bold md:flex">
             <a href="#slabs">Slabs</a>
+            <a href="#about">About</a>
             <a href="#pricing">Pricing</a>
-            <a href="#lookup">Cert Lookup</a>
+            <a href="#cert">Cert Lookup</a>
             <a href="#contact">Contact</a>
           </nav>
         </div>
       </header>
 
-      <section
-        id="home"
-        className="mx-auto grid max-w-7xl gap-10 px-8 py-20 md:grid-cols-2 md:items-center"
-      >
+      <section className="mx-auto grid max-w-7xl gap-12 px-8 py-20 md:grid-cols-2 md:items-center">
         <div>
-          <p className="mb-5 inline-block rounded-full border border-sky-300/40 px-4 py-2 text-sm tracking-widest text-sky-300">
-            AVIATION STANDARD GRADING
+          <p className="mb-5 inline-block rounded-full border border-sky-300/40 px-4 py-2 text-sm font-bold uppercase tracking-[0.3em] text-sky-200">
+            Aviation Standard Grading
           </p>
 
           <h1 className="mb-6 text-5xl font-black leading-tight md:text-7xl">
-            Precision card grading built on aviation discipline.
+            Precision card grading built on aviation standards.
           </h1>
 
-          <p className="max-w-2xl text-lg text-blue-100/80">
-            ASG brings a careful, consistent, and professional inspection standard
-            to collectible card grading. Precision, presentation, and trust are
-            non-negotiable.
+          <p className="mb-8 max-w-xl text-lg leading-8 text-blue-100/80">
+            ASG brings a careful, consistent, and professional inspection
+            standard to collectible card grading. Precision, presentation, and
+            trust are non-negotiable.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a className="rounded-full bg-sky-400 px-6 py-3 font-bold text-black" href="#contact">
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="#contact"
+              className="rounded-full bg-sky-400 px-7 py-4 font-black text-black"
+            >
               Join Waitlist
             </a>
-            <a className="rounded-full border border-white/25 px-6 py-3 font-bold" href="#lookup">
+
+            <a
+              href="#cert"
+              className="rounded-full border border-white/20 px-7 py-4 font-black"
+            >
               Cert Lookup
             </a>
-            <a className="rounded-full border border-white/25 px-6 py-3 font-bold" href="#slabs">
+
+            <a
+              href="#slabs"
+              className="rounded-full border border-white/20 px-7 py-4 font-black"
+            >
               View Slabs
             </a>
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-[2rem] border border-white/15 bg-white/5 shadow-2xl">
+        <div className="overflow-hidden rounded-3xl border border-white/15 bg-white/5 shadow-2xl">
           <Image
-            src="/asg-hero-tech.png"
-            alt="ASG grading technology"
-            width={900}
-            height={650}
-            className="h-auto w-full"
+            src="/asg-card-showcase.png"
+            alt="ASG graded slab example"
+            width={1200}
+            height={1400}
             priority
+            className="h-auto w-full object-contain"
+          />
+        </div>
+      </section>
+
+      <section id="slabs" className="mx-auto max-w-7xl px-8 py-20">
+        <p className="mb-5 inline-block rounded-full border border-sky-300/40 px-4 py-2 text-sm font-bold uppercase tracking-[0.3em] text-sky-200">
+          Slab Showcase
+        </p>
+
+        <h2 className="mb-4 text-4xl font-black md:text-5xl">
+          ASG Graded Card Examples
+        </h2>
+
+        <p className="mb-10 max-w-3xl text-blue-100/80">
+          A clean preview of ASG slab presentation, label layout, and graded
+          card display.
+        </p>
+
+        <div className="overflow-hidden rounded-3xl border border-white/15 bg-white/5 shadow-2xl">
+          <Image
+            src="/asg-card-showcase2.png"
+            alt="ASG featured slab examples"
+            width={1600}
+            height={1000}
+            className="h-auto w-full object-contain"
           />
         </div>
       </section>
 
       <section id="about" className="mx-auto max-w-7xl px-8 py-20">
-        <p className="mb-5 inline-block rounded-full border border-sky-300/40 px-4 py-2 text-sm tracking-widest text-sky-300">
-          ABOUT ASG
+        <p className="mb-5 inline-block rounded-full border border-sky-300/40 px-4 py-2 text-sm font-bold uppercase tracking-[0.3em] text-sky-200">
+          About ASG
         </p>
 
-        <h2 className="mb-6 text-4xl font-black md:text-5xl">
-          A sharper grading standard.
+        <h2 className="mb-4 text-4xl font-black md:text-5xl">
+          Built from aviation-level discipline.
         </h2>
 
-        <p className="max-w-4xl text-blue-100/80">
-          Aviation Standard Grading was built around disciplined inspection,
-          premium presentation, secure encapsulation, and collector confidence.
-          Every detail matters.
+        <p className="mb-6 max-w-4xl text-lg leading-8 text-blue-100/80">
+          Aviation Standard Grading was created around the same mindset used in
+          aircraft maintenance: careful inspection, consistency, documentation,
+          and precision. Our goal is to bring a clean, professional, and
+          trustworthy grading experience to collectible cards.
         </p>
-
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          <Card title="Precision Review" text="Cards are reviewed for centering, surface, corners, edges, and overall eye appeal." />
-          <Card title="Premium Slabs" text="Clean presentation, futuristic labels, and professional slab design built for collectors." />
-          <Card title="ASG Vault" text="Certification lookup support for slab verification and collector confidence." />
-        </div>
-      </section>
-
-      <section id="slabs" className="mx-auto max-w-7xl px-8 py-20">
-        <p className="mb-5 inline-block rounded-full border border-sky-300/40 px-4 py-2 text-sm tracking-widest text-sky-300">
-          ASG VISUALS
-        </p>
-
-        <h2 className="mb-8 text-4xl font-black md:text-5xl">
-          Slabs, workflow, and vault technology.
-        </h2>
 
         <div className="grid gap-6 md:grid-cols-3">
-          <ImageCard src="/asg-hero-tech.png" title="ASG Slab Presentation" />
-          <ImageCard src="/asg-lab-workflow.png" title="Grading Workflow" />
-          <ImageCard src="/asg-vault-tech.png" title="Certification Vault" />
+          <Card
+            title="Precision Inspection"
+            text="Each card is reviewed with attention to surface, corners, edges, centering, and overall presentation."
+          />
+          <Card
+            title="Professional Presentation"
+            text="ASG slabs are designed to look clean, premium, and display-ready for collectors and sellers."
+          />
+          <Card
+            title="Trust & Documentation"
+            text="Certification lookup and organized record keeping are built into the ASG vision from the start."
+          />
         </div>
       </section>
 
       <section id="pricing" className="mx-auto max-w-7xl px-8 py-20">
-        <p className="mb-5 inline-block rounded-full border border-sky-300/40 px-4 py-2 text-sm tracking-widest text-sky-300">
-          PRICING
+        <p className="mb-5 inline-block rounded-full border border-sky-300/40 px-4 py-2 text-sm font-bold uppercase tracking-[0.3em] text-sky-200">
+          Pricing
         </p>
 
-        <h2 className="mb-8 text-4xl font-black md:text-5xl">
+        <h2 className="mb-10 text-4xl font-black md:text-5xl">
           Simple grading options.
         </h2>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          <Price title="Bulk Grading" price="$8" text="Per card. Estimated turnaround: 4–6 weeks." />
-          <Price title="Priority Express" price="$12" text="Per card. Estimated turnaround: 2–3 weeks." />
-          <Price title="Submission Status" price="Paused" text="ASG is not currently taking submissions due to manpower and backlog." />
+        <div className="grid gap-6 md:grid-cols-2">
+          <Price
+            title="Bulk Grading"
+            price="$8 / card"
+            text="Estimated turnaround: 4–6 weeks."
+          />
+
+          <Price
+            title="Priority Express"
+            price="$12 / card"
+            text="Estimated turnaround: 2–3 weeks."
+          />
         </div>
       </section>
 
-      <section id="lookup" className="mx-auto max-w-7xl px-8 py-20">
-        <p className="mb-5 inline-block rounded-full border border-sky-300/40 px-4 py-2 text-sm tracking-widest text-sky-300">
-          CERT LOOKUP
+      <section id="cert" className="mx-auto max-w-7xl px-8 py-20">
+        <p className="mb-5 inline-block rounded-full border border-sky-300/40 px-4 py-2 text-sm font-bold uppercase tracking-[0.3em] text-sky-200">
+          Cert Lookup
         </p>
 
         <h2 className="mb-4 text-4xl font-black md:text-5xl">
-          ASG Cert Lookup
+          Certification lookup.
         </h2>
 
-        <div className="mt-8 max-w-3xl rounded-3xl border border-white/15 bg-white/5 p-8">
+        <p className="mb-8 max-w-3xl text-blue-100/80">
+          Search by certification number to verify slab information once cards
+          are added to the ASG online vault.
+        </p>
+
+        <div className="max-w-xl rounded-3xl border border-white/15 bg-white/5 p-7">
           <input
             value={cert}
             onChange={(e) => setCert(e.target.value)}
@@ -158,7 +193,7 @@ export default function Home() {
 
           <button
             onClick={lookupCert}
-            className="rounded-full bg-sky-400 px-6 py-3 font-bold text-black"
+            className="rounded-full bg-sky-400 px-7 py-4 font-black text-black"
           >
             Search Cert
           </button>
@@ -168,49 +203,36 @@ export default function Home() {
       </section>
 
       <section id="contact" className="mx-auto max-w-7xl px-8 py-20">
-        <p className="mb-5 inline-block rounded-full border border-sky-300/40 px-4 py-2 text-sm tracking-widest text-sky-300">
-          CONTACT ASG
+        <p className="mb-5 inline-block rounded-full border border-sky-300/40 px-4 py-2 text-sm font-bold uppercase tracking-[0.3em] text-sky-200">
+          Contact ASG
         </p>
 
         <h2 className="mb-4 text-4xl font-black md:text-5xl">
           Join the waitlist or ask a question.
         </h2>
 
-        <p className="max-w-3xl text-blue-100/80">
+        <p className="mb-8 max-w-3xl text-blue-100/80">
           Reach out for future availability, launch updates, pricing questions,
           certification lookup support, or general ASG information.
         </p>
 
-        <div className="mt-8 max-w-3xl rounded-3xl border border-white/15 bg-white/5 p-8">
+        <div className="max-w-3xl rounded-3xl border border-white/15 bg-white/5 p-8">
           <p className="mb-4">
             <strong>Email:</strong> {ASG_EMAIL}
           </p>
 
-          <p className="mb-6">
+          <p className="mb-8">
             <strong>Location:</strong> Tulsa, Oklahoma
           </p>
 
-          <div className="flex flex-wrap gap-4">
-            <a
-              href={`mailto:${ASG_EMAIL}`}
-              className="rounded-full bg-sky-400 px-6 py-3 font-bold text-black"
-            >
-              Open Email App
-            </a>
-
-            <button
-              onClick={copyEmail}
-              className="rounded-full border border-white/25 px-6 py-3 font-bold"
-            >
-              Copy ASG Email
-            </button>
-          </div>
+          <a
+            href={`mailto:${ASG_EMAIL}`}
+            className="rounded-full bg-sky-400 px-7 py-4 font-black text-black"
+          >
+            Email ASG
+          </a>
         </div>
       </section>
-
-      <footer className="border-t border-white/10 px-8 py-8 text-center text-sm text-blue-100/60">
-        © 2026 Aviation Standard Grading. All rights reserved.
-      </footer>
     </main>
   );
 }
@@ -224,7 +246,15 @@ function Card({ title, text }: { title: string; text: string }) {
   );
 }
 
-function Price({ title, price, text }: { title: string; price: string; text: string }) {
+function Price({
+  title,
+  price,
+  text,
+}: {
+  title: string;
+  price: string;
+  text: string;
+}) {
   return (
     <div className="rounded-3xl border border-white/15 bg-white/5 p-7">
       <h3 className="mb-3 text-2xl font-black">{title}</h3>
@@ -233,17 +263,3 @@ function Price({ title, price, text }: { title: string; price: string; text: str
     </div>
   );
 }
-
-function ImageCard({ src, title }: { src: string; title: string }) {
-  return (
-    <div className="overflow-hidden rounded-3xl border border-white/15 bg-white/5">
-      <Image src={src} alt={title} width={700} height={500} className="h-72 w-full object-cover" />
-      <div className="p-5">
-        <h3 className="text-xl font-black">{title}</h3>
-      </div>
-    </div>
-  );
-}<div className="grid gap-6 md:grid-cols-2">
-  <ImageCard src="/asg-card-showcase.png" title="ASG Graded Card Showcase" />
-  <ImageCard src="/asg-card-showcase2.png" title="ASG Featured Slab Examples" />
-</div>
