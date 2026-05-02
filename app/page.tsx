@@ -30,7 +30,7 @@ export default function Home() {
             <a href="#slabs">Slabs</a>
             <a href="#about">About</a>
             <a href="#pricing">Pricing</a>
-            <a href="#cert">Cert Lookup</a>
+            <a href="/cert">Cert Lookup</a>
             <a href="#contact">Contact</a>
           </nav>
         </div>
@@ -61,7 +61,7 @@ export default function Home() {
             </a>
 
             <a
-              href="#cert"
+              href="/cert"
               className="rounded-full border border-white/20 px-7 py-4 font-black"
             >
               Cert Lookup
