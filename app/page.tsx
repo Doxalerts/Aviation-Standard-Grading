@@ -1,307 +1,917 @@
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#020811] text-white">
-      <section className="min-h-screen px-8 py-8 bg-[radial-gradient(circle_at_70%_20%,rgba(201,154,74,0.18),transparent_28%),linear-gradient(180deg,#020811,#06111e,#020811)]">
-        <nav className="flex items-center justify-between border-b border-[#c99a4a55] pb-6">
-          <div className="flex items-center gap-4">
-            <div className="flex h-14 w-20 items-center justify-center rounded-xl border-2 border-[#c99a4a] text-xl font-black text-[#f0c777]">
-              SAG
-            </div>
-            <div>
-              <div className="text-2xl font-black tracking-[0.25em]">
-                STANDARD
-              </div>
-              <div className="text-sm tracking-[0.35em]">
-                AVIATION GRADING
-              </div>
-            </div>
-          </div>
+    <main className="sag-page">
+      <style>{`
+        * {
+          box-sizing: border-box;
+        }
 
-          <div className="hidden gap-8 text-xs font-bold uppercase tracking-[0.18em] md:flex">
-            <a href="#standard">The Standard</a>
-            <a href="#process">Process</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#cert">Cert Lookup</a>
-            <a href="#waitlist">Waitlist</a>
-          </div>
+        html {
+          scroll-behavior: smooth;
+        }
 
-          <a
-            href="#cert"
-            className="rounded border border-[#c99a4a] px-5 py-3 text-xs font-black uppercase tracking-[0.18em]"
-          >
-            Search Cert
-          </a>
+        body {
+          margin: 0;
+          background: #020811;
+          color: #f7f3eb;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        .sag-page {
+          min-height: 100vh;
+          background:
+            radial-gradient(circle at 72% 18%, rgba(201, 154, 74, 0.18), transparent 28%),
+            radial-gradient(circle at 18% 20%, rgba(48, 100, 142, 0.2), transparent 32%),
+            linear-gradient(180deg, #020811 0%, #06111e 52%, #020811 100%);
+        }
+
+        .nav {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 24px;
+          padding: 26px 5%;
+          border-bottom: 1px solid rgba(201, 154, 74, 0.35);
+          background: rgba(2, 8, 17, 0.94);
+          position: sticky;
+          top: 0;
+          z-index: 50;
+        }
+
+        .brand {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+        }
+
+        .logo {
+          width: 72px;
+          height: 56px;
+          border: 2px solid #c99a4a;
+          border-radius: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #f0c777;
+          font-weight: 900;
+          letter-spacing: 1px;
+          background: linear-gradient(135deg, rgba(201,154,74,0.18), rgba(255,255,255,0.04));
+          box-shadow: 0 0 24px rgba(201,154,74,0.18);
+        }
+
+        .brand-title {
+          font-size: 23px;
+          line-height: 1;
+          letter-spacing: 5px;
+          font-weight: 900;
+        }
+
+        .brand-title span {
+          display: block;
+          font-size: 13px;
+          letter-spacing: 4px;
+          margin-top: 4px;
+        }
+
+        .nav-links {
+          display: flex;
+          gap: 28px;
+          align-items: center;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          font-weight: 800;
+        }
+
+        .nav-links a:hover {
+          color: #f0c777;
+        }
+
+        .nav-button {
+          border: 1px solid #c99a4a;
+          padding: 13px 22px;
+          border-radius: 5px;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          font-size: 12px;
+          font-weight: 900;
+        }
+
+        .hero {
+          position: relative;
+          min-height: 720px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 40px;
+          padding: 70px 5% 50px;
+          overflow: hidden;
+        }
+
+        .hero:before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background:
+            linear-gradient(90deg, rgba(2,8,17,1) 0%, rgba(2,8,17,0.86) 42%, rgba(2,8,17,0.48) 100%),
+            radial-gradient(circle at 78% 44%, rgba(255,255,255,0.13), transparent 24%),
+            linear-gradient(135deg, #06111e, #020811);
+          z-index: 0;
+        }
+
+        .hero > * {
+          position: relative;
+          z-index: 1;
+        }
+
+        .eyebrow {
+          color: #f0c777;
+          font-size: 16px;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          margin-bottom: 18px;
+        }
+
+        h1 {
+          margin: 0 0 28px;
+          font-size: clamp(48px, 6vw, 86px);
+          line-height: 0.98;
+          text-transform: uppercase;
+          letter-spacing: 3px;
+        }
+
+        .wing-line {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          color: #f0c777;
+          max-width: 420px;
+          margin-bottom: 28px;
+        }
+
+        .wing-line:before,
+        .wing-line:after {
+          content: "";
+          flex: 1;
+          height: 1px;
+          background: #c99a4a;
+        }
+
+        .hero-text {
+          max-width: 560px;
+          color: #d7dde3;
+          font-size: 16px;
+          line-height: 1.75;
+          margin-bottom: 24px;
+        }
+
+        .notice {
+          max-width: 520px;
+          display: flex;
+          gap: 16px;
+          padding: 18px 20px;
+          border: 1px solid rgba(201,154,74,0.48);
+          border-radius: 6px;
+          background: rgba(2,8,17,0.72);
+          margin-bottom: 26px;
+        }
+
+        .notice-icon {
+          width: 30px;
+          height: 30px;
+          border: 1px solid #f0c777;
+          color: #f0c777;
+          border-radius: 999px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          font-weight: 900;
+        }
+
+        .notice strong {
+          color: #f0c777;
+          display: block;
+          margin-bottom: 4px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        .buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+
+        .button {
+          display: inline-block;
+          border: 1px solid #c99a4a;
+          border-radius: 5px;
+          padding: 15px 32px;
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
+          font-weight: 900;
+        }
+
+        .button.gold {
+          background: linear-gradient(135deg, #8f6427, #e1b96f, #8f6427);
+          color: white;
+        }
+
+        .slab-stage {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .slab {
+          width: min(360px, 86vw);
+          padding: 18px;
+          border: 4px solid rgba(255,255,255,0.42);
+          border-radius: 30px;
+          background: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.07));
+          box-shadow:
+            0 40px 90px rgba(0,0,0,0.65),
+            inset 0 0 22px rgba(255,255,255,0.22);
+        }
+
+        .slab-inner {
+          border: 1px solid rgba(255,255,255,0.28);
+          border-radius: 20px;
+          background: rgba(2,8,17,0.58);
+          padding: 13px;
+        }
+
+        .label {
+          display: grid;
+          grid-template-columns: 1fr 72px;
+          gap: 10px;
+          background: #05080c;
+          border: 1px solid rgba(255,255,255,0.28);
+          padding: 11px;
+          margin-bottom: 15px;
+        }
+
+        .label small {
+          display: block;
+          color: #f0c777;
+          font-size: 9px;
+          letter-spacing: 1.4px;
+          margin-bottom: 8px;
+        }
+
+        .label h3 {
+          margin: 0;
+          font-size: 12px;
+          line-height: 1.35;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        .grade {
+          border: 1px solid rgba(255,255,255,0.34);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          font-weight: 900;
+        }
+
+        .grade b {
+          font-size: 42px;
+          line-height: 1;
+        }
+
+        .grade span {
+          font-size: 9px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+        }
+
+        .card {
+          min-height: 320px;
+          border-radius: 12px;
+          border: 8px solid #d88034;
+          background:
+            radial-gradient(circle at 50% 38%, #f8c45d, transparent 18%),
+            radial-gradient(circle at 48% 40%, #e96238, transparent 25%),
+            linear-gradient(135deg, #1f7fb7, #ef9c42 55%, #7c2516);
+          padding: 14px;
+          color: #111;
+          box-shadow: inset 0 0 0 3px rgba(0,0,0,0.35);
+        }
+
+        .card-title {
+          display: flex;
+          justify-content: space-between;
+          background: rgba(255,255,255,0.75);
+          border-radius: 999px;
+          padding: 5px 10px;
+          font-size: 14px;
+          font-weight: 900;
+        }
+
+        .fire {
+          height: 178px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 78px;
+          filter: drop-shadow(0 10px 8px rgba(0,0,0,0.5));
+        }
+
+        .attack {
+          background: rgba(255,255,255,0.62);
+          border-radius: 8px;
+          padding: 8px;
+          margin-top: 8px;
+          font-size: 12px;
+          font-weight: 900;
+        }
+
+        .trust {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          border-top: 1px solid rgba(201,154,74,0.35);
+          border-bottom: 1px solid rgba(201,154,74,0.35);
+          background: rgba(4,15,27,0.92);
+        }
+
+        .trust-card {
+          padding: 38px 28px;
+          text-align: center;
+          border-right: 1px solid rgba(201,154,74,0.35);
+        }
+
+        .trust-card:last-child {
+          border-right: none;
+        }
+
+        .trust-card h3 {
+          margin: 0 0 10px;
+          color: #f0c777;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        .trust-card p {
+          margin: 0 auto;
+          max-width: 260px;
+          color: #b9c1c8;
+          font-size: 14px;
+        }
+
+        .split {
+          display: grid;
+          grid-template-columns: 1fr 1.1fr;
+          border-bottom: 1px solid rgba(201,154,74,0.35);
+        }
+
+        .section {
+          padding: 58px 5%;
+        }
+
+        .section.right {
+          border-left: 1px solid rgba(201,154,74,0.35);
+        }
+
+        .section-kicker {
+          color: #f0c777;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          font-weight: 900;
+          margin-bottom: 8px;
+        }
+
+        h2 {
+          margin: 0 0 18px;
+          font-size: 30px;
+          line-height: 1.15;
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
+        }
+
+        .section p {
+          color: #d4dae0;
+          line-height: 1.65;
+        }
+
+        .metrics {
+          margin-top: 24px;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          border: 1px solid rgba(255,255,255,0.14);
+          border-radius: 8px;
+          overflow: hidden;
+        }
+
+        .metric {
+          min-height: 112px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          border-right: 1px solid rgba(255,255,255,0.12);
+          border-bottom: 1px solid rgba(255,255,255,0.12);
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          font-weight: 900;
+          font-size: 13px;
+        }
+
+        .metric:nth-child(3),
+        .metric:nth-child(6) {
+          border-right: none;
+        }
+
+        .metric:nth-child(n+4) {
+          border-bottom: none;
+        }
+
+        .steps {
+          display: grid;
+          gap: 0;
+        }
+
+        .step {
+          display: grid;
+          grid-template-columns: 58px 1fr;
+          gap: 16px;
+          border-bottom: 1px solid rgba(255,255,255,0.12);
+          padding: 14px 0;
+        }
+
+        .step:last-child {
+          border-bottom: none;
+        }
+
+        .num {
+          color: #c99a4a;
+          font-size: 30px;
+          font-weight: 900;
+        }
+
+        .step h3 {
+          margin: 0 0 4px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          font-size: 15px;
+        }
+
+        .step p {
+          margin: 0;
+          color: #b9c1c8;
+          font-size: 13px;
+        }
+
+        .pricing-cert {
+          display: grid;
+          grid-template-columns: 1fr 1.1fr;
+          border-bottom: 1px solid rgba(201,154,74,0.35);
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 20px;
+          border: 1px solid rgba(201,154,74,0.35);
+          overflow: hidden;
+        }
+
+        th, td {
+          padding: 16px;
+          border-bottom: 1px solid rgba(255,255,255,0.12);
+          border-right: 1px solid rgba(255,255,255,0.1);
+          text-align: left;
+        }
+
+        th {
+          color: #f0c777;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          font-size: 12px;
+        }
+
+        td {
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          font-size: 14px;
+        }
+
+        .cert-box {
+          display: flex;
+          max-width: 560px;
+          margin-top: 18px;
+        }
+
+        .cert-box input {
+          flex: 1;
+          background: rgba(0,0,0,0.28);
+          border: 1px solid rgba(255,255,255,0.18);
+          color: white;
+          padding: 15px;
+          border-radius: 5px 0 0 5px;
+          font-size: 14px;
+        }
+
+        .cert-box button {
+          border: 1px solid #c99a4a;
+          background: linear-gradient(135deg, #8f6427, #e1b96f);
+          color: white;
+          padding: 0 24px;
+          border-radius: 0 5px 5px 0;
+          text-transform: uppercase;
+          font-weight: 900;
+          letter-spacing: 1px;
+        }
+
+        .cert-result {
+          margin-top: 18px;
+          border: 1px solid rgba(255,255,255,0.18);
+          background: rgba(0,0,0,0.24);
+          padding: 16px;
+          border-radius: 6px;
+          max-width: 560px;
+        }
+
+        .verified {
+          color: #23c26b;
+          font-weight: 900;
+          font-size: 12px;
+          text-transform: uppercase;
+        }
+
+        .waitlist {
+          margin: 28px 5%;
+          border: 1px solid rgba(201,154,74,0.4);
+          background: rgba(7,20,33,0.75);
+          border-radius: 8px;
+          padding: 26px;
+          display: grid;
+          grid-template-columns: 1fr 1.6fr;
+          gap: 26px;
+          align-items: center;
+        }
+
+        .waitlist h2 {
+          margin-bottom: 8px;
+        }
+
+        .wait-form {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+
+        .wait-form input {
+          background: rgba(0,0,0,0.28);
+          border: 1px solid rgba(255,255,255,0.18);
+          color: white;
+          padding: 14px;
+          border-radius: 5px;
+        }
+
+        .wait-form button {
+          border: 1px solid #c99a4a;
+          background: linear-gradient(135deg, #8f6427, #e1b96f);
+          color: white;
+          border-radius: 5px;
+          font-weight: 900;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        footer {
+          border-top: 1px solid rgba(201,154,74,0.35);
+          padding: 34px 5%;
+          text-align: center;
+          color: #b9c1c8;
+        }
+
+        @media (max-width: 1000px) {
+          .nav {
+            flex-direction: column;
+          }
+
+          .nav-links {
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+
+          .hero,
+          .split,
+          .pricing-cert,
+          .waitlist {
+            grid-template-columns: 1fr;
+          }
+
+          .section.right {
+            border-left: none;
+            border-top: 1px solid rgba(201,154,74,0.35);
+          }
+
+          .trust {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+
+        @media (max-width: 620px) {
+          .brand-title {
+            font-size: 18px;
+          }
+
+          .brand-title span {
+            font-size: 11px;
+          }
+
+          .hero {
+            padding-top: 44px;
+          }
+
+          h1 {
+            font-size: 44px;
+          }
+
+          .trust,
+          .metrics,
+          .wait-form {
+            grid-template-columns: 1fr;
+          }
+
+          .trust-card {
+            border-right: none;
+            border-bottom: 1px solid rgba(201,154,74,0.35);
+          }
+
+          .cert-box {
+            flex-direction: column;
+          }
+
+          .cert-box input,
+          .cert-box button {
+            border-radius: 5px;
+          }
+
+          .cert-box button {
+            padding: 14px;
+            margin-top: 10px;
+          }
+        }
+      `}</style>
+
+      <header className="nav">
+        <a href="#" className="brand">
+          <div className="logo">SAG</div>
+          <div className="brand-title">
+            STANDARD
+            <span>AVIATION GRADING</span>
+          </div>
+        </a>
+
+        <nav className="nav-links">
+          <a href="#standard">The Standard</a>
+          <a href="#process">Process</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#cert">Cert Lookup</a>
+          <a href="#waitlist">Waitlist</a>
         </nav>
 
-        <div className="grid gap-12 py-20 lg:grid-cols-2">
-          <div>
-            <p className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-[#f0c777]">
-              Precision Card Grading
-            </p>
+        <a href="#cert" className="nav-button">Search Cert</a>
+      </header>
 
-            <h1 className="mb-6 text-5xl font-black uppercase leading-none tracking-wide md:text-7xl">
-              Built on <br />
-              Aviation Discipline.
-            </h1>
+      <section className="hero">
+        <div>
+          <div className="eyebrow">Precision Card Grading</div>
 
-            <div className="mb-8 flex max-w-md items-center gap-5 text-[#f0c777]">
-              <div className="h-px flex-1 bg-[#c99a4a]" />
-              ✈
-              <div className="h-px flex-1 bg-[#c99a4a]" />
-            </div>
+          <h1>
+            Built on
+            <br />
+            Aviation Discipline.
+          </h1>
 
-            <p className="mb-6 max-w-xl text-lg leading-8 text-slate-300">
-              Standard Aviation Grading was created for collectors who want
-              their cards inspected, sealed, and presented with a higher level
-              of care. Our process is focused on consistency, documentation,
-              presentation, and trust.
-            </p>
+          <div className="wing-line">✈</div>
 
-            <div className="mb-8 max-w-xl rounded border border-[#c99a4a88] bg-black/30 p-5">
-              <p className="mb-1 font-black uppercase tracking-wide text-[#f0c777]">
-                Submissions are currently paused
-              </p>
-              <p className="text-slate-300">
-                while we complete existing volume and prepare for the next
-                intake window.
-              </p>
-            </div>
+          <p className="hero-text">
+            Standard Aviation Grading was created for collectors who want their cards inspected,
+            sealed, and presented with a higher level of care. Our process is focused on consistency,
+            documentation, presentation, and trust.
+          </p>
 
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#cert"
-                className="rounded bg-gradient-to-r from-[#8f6427] via-[#e1b96f] to-[#8f6427] px-8 py-4 font-black uppercase tracking-wide"
-              >
-                Search a Cert
-              </a>
-
-              <a
-                href="#waitlist"
-                className="rounded border border-[#c99a4a] px-8 py-4 font-black uppercase tracking-wide"
-              >
-                Join the Waitlist
-              </a>
+          <div className="notice">
+            <div className="notice-icon">!</div>
+            <div>
+              <strong>Submissions are currently paused</strong>
+              <span>while we complete existing volume and prepare for the next intake window.</span>
             </div>
           </div>
 
-          <div className="flex items-center justify-center">
-            <div className="w-full max-w-sm rounded-[2rem] border-4 border-white/40 bg-white/10 p-5 shadow-2xl">
-              <div className="rounded-2xl border border-white/20 bg-black/40 p-4">
-                <div className="mb-4 grid grid-cols-[1fr_80px] gap-3 border border-white/20 bg-black p-3">
-                  <div>
-                    <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#f0c777]">
-                      ✈ Standard Aviation Grading
-                    </p>
-                    <p className="text-xs font-black uppercase leading-5">
-                      2023 Pokémon
-                      <br />
-                      Charizard ex
-                      <br />
-                      Cert #000128
-                    </p>
-                  </div>
+          <div className="buttons">
+            <a className="button gold" href="#cert">Search a Cert</a>
+            <a className="button" href="#waitlist">Join the Waitlist</a>
+          </div>
+        </div>
 
-                  <div className="flex flex-col items-center justify-center border border-white/30">
-                    <div className="text-5xl font-black">10</div>
-                    <div className="text-[10px] font-bold uppercase">
-                      Pristine
-                    </div>
-                  </div>
+        <div className="slab-stage">
+          <div className="slab">
+            <div className="slab-inner">
+              <div className="label">
+                <div>
+                  <small>✈ STANDARD AVIATION GRADING</small>
+                  <h3>
+                    2023 Pokémon
+                    <br />
+                    Charizard ex
+                    <br />
+                    Cert #000128
+                  </h3>
                 </div>
 
-                <div className="rounded-xl border-8 border-orange-500 bg-gradient-to-br from-sky-700 via-orange-400 to-red-900 p-4 text-black">
-                  <div className="mb-8 flex justify-between rounded-full bg-white/70 px-3 py-1 font-black">
-                    <span>Charizard ex</span>
-                    <span>330</span>
-                  </div>
-
-                  <div className="mb-8 text-center text-8xl">🔥</div>
-
-                  <div className="mb-2 rounded bg-white/60 p-2 text-sm font-black">
-                    Brave Wing — 60+
-                  </div>
-
-                  <div className="rounded bg-white/60 p-2 text-sm font-black">
-                    Explosive Vortex — 330
-                  </div>
+                <div className="grade">
+                  <b>10</b>
+                  <span>Pristine</span>
                 </div>
+              </div>
+
+              <div className="card">
+                <div className="card-title">
+                  <span>Charizard ex</span>
+                  <span>330</span>
+                </div>
+
+                <div className="fire">🔥</div>
+
+                <div className="attack">Brave Wing — 60+</div>
+                <div className="attack">Explosive Vortex — 330</div>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        <section className="grid border-y border-[#c99a4a55] md:grid-cols-4">
-          {[
-            ["Inspection", "Detailed card review across major grading categories."],
-            ["Protection", "Cards are sealed in clean slabs for long-term preservation."],
-            ["Certification", "Every slab receives a unique cert record."],
-            ["Consistency", "A grading approach inspired by aviation-level discipline."],
-          ].map(([title, text]) => (
-            <div key={title} className="border-[#c99a4a55] p-8 text-center md:border-r">
-              <h3 className="mb-3 font-black uppercase tracking-wide text-[#f0c777]">
-                {title}
-              </h3>
-              <p className="text-slate-300">{text}</p>
-            </div>
-          ))}
-        </section>
+      <section className="trust">
+        <div className="trust-card">
+          <h3>Inspection</h3>
+          <p>Detailed card review across major grading categories.</p>
+        </div>
 
-        <section
-          id="standard"
-          className="grid gap-10 border-b border-[#c99a4a55] py-16 lg:grid-cols-2"
-        >
-          <div>
-            <p className="mb-2 font-black uppercase tracking-[0.2em] text-[#f0c777]">
-              The Standard
-            </p>
-            <h2 className="mb-5 text-3xl font-black uppercase">
-              Built Around Inspection, Not Hype.
-            </h2>
-            <p className="max-w-xl text-slate-300">
-              Every card deserves a careful review. Our grading process is
-              designed around the same mindset used in aviation: slow down,
-              inspect clearly, document the result, and protect the final
-              product.
-            </p>
-          </div>
+        <div className="trust-card">
+          <h3>Protection</h3>
+          <p>Cards are sealed in clean, durable slabs for long-term preservation.</p>
+        </div>
 
-          <div className="grid grid-cols-2 rounded border border-white/15 md:grid-cols-3">
-            {["Centering", "Surface", "Corners", "Edges", "Print Quality", "Eye Appeal"].map(
-              (item) => (
-                <div
-                  key={item}
-                  className="flex min-h-28 items-center justify-center border border-white/10 p-5 text-center font-bold uppercase tracking-wide"
-                >
-                  {item}
-                </div>
-              )
-            )}
-          </div>
-        </section>
+        <div className="trust-card">
+          <h3>Certification</h3>
+          <p>Every slab receives a unique cert record that can be verified online.</p>
+        </div>
 
-        <section
-          id="process"
-          className="grid gap-10 border-b border-[#c99a4a55] py-16 lg:grid-cols-2"
-        >
-          <div>
-            <p className="mb-2 font-black uppercase tracking-[0.2em] text-[#f0c777]">
-              The Process
-            </p>
-            <h2 className="text-3xl font-black uppercase">
-              The SAG Grading Process
-            </h2>
-          </div>
+        <div className="trust-card">
+          <h3>Consistency</h3>
+          <p>A grading approach inspired by aviation-level discipline and standards.</p>
+        </div>
+      </section>
 
-          <div className="space-y-5">
-            {[
-              ["01", "Pre-Flight Review"],
-              ["02", "Precision Inspection"],
-              ["03", "Grade Assignment"],
-              ["04", "Slab & Seal"],
-              ["05", "Cert Archive"],
-            ].map(([num, title]) => (
-              <div key={num} className="grid grid-cols-[60px_1fr] gap-4 border-b border-white/10 pb-4">
-                <div className="text-3xl font-black text-[#c99a4a]">{num}</div>
-                <div>
-                  <h3 className="font-black uppercase tracking-wide">{title}</h3>
-                  <p className="text-sm text-slate-300">
-                    Controlled review, documentation, and presentation for every
-                    graded card.
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+      <section className="split">
+        <div id="standard" className="section">
+          <div className="section-kicker">The Standard</div>
+          <h2>Built Around Inspection, Not Hype.</h2>
 
-        <section
-          id="pricing"
-          className="grid gap-10 border-b border-[#c99a4a55] py-16 lg:grid-cols-2"
-        >
-          <div>
-            <p className="mb-2 font-black uppercase tracking-[0.2em] text-[#f0c777]">
-              Current Pricing
-            </p>
-            <h2 className="mb-5 text-3xl font-black uppercase">
-              Public Submissions Paused
-            </h2>
-
-            <div className="overflow-hidden rounded border border-[#c99a4a55]">
-              <div className="grid grid-cols-3 bg-black/30 p-4 text-xs font-black uppercase tracking-wide text-[#f0c777]">
-                <div>Tier</div>
-                <div>Price</div>
-                <div>Turnaround</div>
-              </div>
-
-              <div className="grid grid-cols-3 border-t border-white/10 p-4">
-                <div>Bulk Grading</div>
-                <div>$8/card</div>
-                <div>4–6 weeks</div>
-              </div>
-
-              <div className="grid grid-cols-3 border-t border-white/10 p-4">
-                <div>Priority Express</div>
-                <div>$12/card</div>
-                <div>2–3 weeks</div>
-              </div>
-            </div>
-          </div>
-
-          <div id="cert">
-            <p className="mb-2 font-black uppercase tracking-[0.2em] text-[#f0c777]">
-              Verify a Cert
-            </p>
-            <h2 className="mb-5 text-3xl font-black uppercase">
-              Cert Lookup
-            </h2>
-
-            <div className="flex max-w-xl">
-              <input
-                className="flex-1 rounded-l border border-white/20 bg-black/30 p-4 text-white"
-                placeholder="Enter cert number"
-              />
-              <button className="rounded-r bg-gradient-to-r from-[#8f6427] to-[#e1b96f] px-6 font-black uppercase">
-                Search Cert
-              </button>
-            </div>
-
-            <div className="mt-5 rounded border border-white/15 bg-black/30 p-5">
-              <p className="font-black">
-                Cert #000128{" "}
-                <span className="text-green-400">● Verified</span>
-              </p>
-              <p className="text-slate-300">2023 Pokémon Charizard ex</p>
-              <p className="text-slate-300">Grade: PRISTINE 10</p>
-              <p className="text-slate-300">Date Graded: June 10, 2026</p>
-            </div>
-          </div>
-        </section>
-
-        <section
-          id="waitlist"
-          className="my-10 rounded border border-[#c99a4a55] bg-black/30 p-8"
-        >
-          <h2 className="mb-2 text-3xl font-black uppercase">
-            Be First When Submissions Reopen
-          </h2>
-          <p className="mb-6 text-slate-300">
-            Join the waitlist and be notified as soon as a new intake opens.
+          <p>
+            Every card deserves a careful review. Our grading process is designed around the same
+            mindset used in aviation: slow down, inspect clearly, document the result, and protect
+            the final product.
           </p>
 
-          <div className="grid gap-4 md:grid-cols-4">
-            <input className="rounded border border-white/20 bg-black/30 p-4 text-white" placeholder="Full Name" />
-            <input className="rounded border border-white/20 bg-black/30 p-4 text-white" placeholder="Email Address" />
-            <input className="rounded border border-white/20 bg-black/30 p-4 text-white" placeholder="Interested in grading..." />
-            <button className="rounded bg-gradient-to-r from-[#8f6427] to-[#e1b96f] px-6 font-black uppercase">
-              Join Waitlist
-            </button>
+          <div className="metrics">
+            <div className="metric">Centering</div>
+            <div className="metric">Surface</div>
+            <div className="metric">Corners</div>
+            <div className="metric">Edges</div>
+            <div className="metric">Print Quality</div>
+            <div className="metric">Eye Appeal</div>
           </div>
-        </section>
+        </div>
 
-        <footer className="border-t border-[#c99a4a55] py-10 text-center text-slate-400">
-          © 2026 Standard Aviation Grading. All rights reserved.
-        </footer>
+        <div id="process" className="section right">
+          <div className="section-kicker">The Process</div>
+          <h2>The SAG Grading Process</h2>
+
+          <div className="steps">
+            <div className="step">
+              <div className="num">01</div>
+              <div>
+                <h3>Pre-Flight Review</h3>
+                <p>Initial inspection for condition, presentation, and obvious defects.</p>
+              </div>
+            </div>
+
+            <div className="step">
+              <div className="num">02</div>
+              <div>
+                <h3>Precision Inspection</h3>
+                <p>Detailed review of surface, corners, edges, centering, and print quality.</p>
+              </div>
+            </div>
+
+            <div className="step">
+              <div className="num">03</div>
+              <div>
+                <h3>Grade Assignment</h3>
+                <p>Final grade assigned based on the card’s full condition profile.</p>
+              </div>
+            </div>
+
+            <div className="step">
+              <div className="num">04</div>
+              <div>
+                <h3>Slab & Seal</h3>
+                <p>Card sealed with a professional Standard Aviation Grading label.</p>
+              </div>
+            </div>
+
+            <div className="step">
+              <div className="num">05</div>
+              <div>
+                <h3>Cert Archive</h3>
+                <p>Online record created for cert lookup.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
+
+      <section className="pricing-cert">
+        <div id="pricing" className="section">
+          <div className="section-kicker">Current Pricing</div>
+          <h2>Public Submissions Paused</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Price</th>
+                <th>Turnaround</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Bulk Grading</td>
+                <td>$8 / Card</td>
+                <td>4–6 Weeks</td>
+              </tr>
+
+              <tr>
+                <td>Priority Express</td>
+                <td>$12 / Card</td>
+                <td>2–3 Weeks</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>Turnaround estimates apply once intake is active.</p>
+        </div>
+
+        <div id="cert" className="section right">
+          <div className="section-kicker">Verify a Cert</div>
+          <h2>Cert Lookup</h2>
+
+          <p>Enter your certification number to verify the slab record.</p>
+
+          <div className="cert-box">
+            <input placeholder="Enter cert number" />
+            <button>Search Cert</button>
+          </div>
+
+          <div className="cert-result">
+            <strong>Cert #000128</strong> <span className="verified">● Verified</span>
+            <p>2023 Pokémon Charizard ex</p>
+            <p>Grade: PRISTINE 10</p>
+            <p>Date Graded: June 10, 2026</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="waitlist" className="waitlist">
+        <div>
+          <h2>Be First When Submissions Reopen</h2>
+          <p>Join the waitlist and be notified as soon as a new intake opens.</p>
+        </div>
+
+        <form className="wait-form">
+          <input placeholder="Full Name" />
+          <input placeholder="Email Address" />
+          <input placeholder="Interested in grading..." />
+          <button type="button">Join Waitlist</button>
+        </form>
+      </section>
+
+      <footer>
+        © 2026 Standard Aviation Grading. All rights reserved.
+      </footer>
     </main>
   );
 }
