@@ -12,10 +12,6 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   margin: 0;
   background: #e9e9e9;
@@ -29,7 +25,7 @@ a {
 }
 
 .asg-site {
-  max-width: 960px;
+  width: 960px;
   margin: 22px auto 26px;
   background: var(--bg);
   overflow: hidden;
@@ -37,7 +33,7 @@ a {
 }
 
 .asg-nav {
-  height: 88px;
+  height: 78px;
   padding: 0 22px;
   display: grid;
   grid-template-columns: 310px 1fr 122px;
@@ -121,7 +117,7 @@ a {
 }
 
 .asg-nav-links a {
-  padding: 34px 0;
+  padding: 30px 0;
   border-bottom: 2px solid transparent;
 }
 
@@ -146,11 +142,11 @@ a {
 }
 
 .asg-hero {
-  min-height: 350px;
+  height: 350px;
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 44px 40px 26px;
+  padding: 36px 40px 26px;
   border-bottom: 1px solid var(--line);
   overflow: hidden;
   background: #030914;
@@ -160,13 +156,7 @@ a {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(
-      90deg,
-      rgba(3, 9, 20, 1) 0%,
-      rgba(3, 9, 20, 0.96) 42%,
-      rgba(3, 9, 20, 0.62) 75%,
-      rgba(3, 9, 20, 0.86) 100%
-    ),
+    linear-gradient(90deg, rgba(3, 9, 20, 1) 0%, rgba(3, 9, 20, 0.96) 42%, rgba(3, 9, 20, 0.62) 75%, rgba(3, 9, 20, 0.86) 100%),
     radial-gradient(circle at 75% 52%, rgba(110, 155, 200, 0.22), transparent 20%),
     linear-gradient(135deg, #030914, #0a1723);
 }
@@ -176,20 +166,8 @@ a {
   position: absolute;
   inset: 0;
   background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.035) 0,
-      rgba(255, 255, 255, 0.035) 1px,
-      transparent 1px,
-      transparent 84px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.024) 0,
-      rgba(255, 255, 255, 0.024) 1px,
-      transparent 1px,
-      transparent 74px
-    );
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0, rgba(255, 255, 255, 0.035) 1px, transparent 1px, transparent 84px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.024) 0, rgba(255, 255, 255, 0.024) 1px, transparent 1px, transparent 74px);
   mask-image: linear-gradient(90deg, transparent 32%, black 100%);
   opacity: 0.7;
 }
@@ -197,7 +175,7 @@ a {
 .plane {
   position: absolute;
   right: 50px;
-  top: 115px;
+  top: 105px;
   width: 230px;
   height: 88px;
   opacity: 0.42;
@@ -210,13 +188,8 @@ a {
   top: 30px;
   width: 210px;
   height: 34px;
-  background: linear-gradient(
-    90deg,
-    rgba(210, 220, 230, 0.08),
-    rgba(210, 220, 230, 0.52)
-  );
+  background: linear-gradient(90deg, rgba(210, 220, 230, 0.08), rgba(210, 220, 230, 0.52));
   border-radius: 60% 20% 20% 60%;
-  filter: blur(0.2px);
 }
 
 .plane::after {
@@ -253,7 +226,7 @@ a {
 }
 
 .asg-kicker {
-  margin: 0 0 14px;
+  margin: 0 0 12px;
   color: var(--gold2);
   font-size: 12px;
   font-weight: 900;
@@ -262,8 +235,8 @@ a {
 }
 
 .asg-hero h1 {
-  margin: 0 0 18px;
-  font-size: 52px;
+  margin: 0 0 14px;
+  font-size: 50px;
   line-height: 0.95;
   font-weight: 900;
   letter-spacing: 3px;
@@ -276,7 +249,7 @@ a {
   gap: 16px;
   width: 285px;
   color: var(--gold2);
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .asg-divider::before,
@@ -293,23 +266,23 @@ a {
 
 .asg-hero-text {
   max-width: 365px;
-  margin: 0 0 16px;
+  margin: 0 0 13px;
   color: #e5ebf1;
   font-size: 11px;
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
 .asg-notice {
   width: 365px;
-  min-height: 70px;
+  min-height: 64px;
   border: 1px solid rgba(201, 146, 64, 0.62);
   border-radius: 3px;
   background: rgba(3, 9, 20, 0.7);
   display: grid;
   grid-template-columns: 28px 1fr;
   gap: 12px;
-  padding: 13px 14px;
-  margin-bottom: 18px;
+  padding: 11px 14px;
+  margin-bottom: 14px;
 }
 
 .asg-notice-icon {
@@ -337,7 +310,7 @@ a {
   margin: 0;
   color: #fff;
   font-size: 10px;
-  line-height: 1.28;
+  line-height: 1.2;
 }
 
 .asg-buttons {
@@ -350,7 +323,7 @@ a {
   align-items: center;
   justify-content: center;
   width: 150px;
-  height: 42px;
+  height: 38px;
   border: 1px solid var(--gold);
   border-radius: 3px;
   background: rgba(3, 9, 20, 0.5);
@@ -367,7 +340,7 @@ a {
 
 .asg-button.small {
   width: 120px;
-  height: 30px;
+  height: 28px;
   font-size: 8px;
   margin-top: 8px;
 }
@@ -389,18 +362,12 @@ a {
 .asg-slab {
   position: relative;
   z-index: 3;
-  width: 204px;
-  padding: 10px;
+  width: 190px;
+  padding: 9px;
   border: 4px solid rgba(255, 255, 255, 0.42);
   border-radius: 18px;
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.32),
-    rgba(255, 255, 255, 0.08)
-  );
-  box-shadow:
-    0 25px 65px rgba(0, 0, 0, 0.72),
-    inset 0 0 18px rgba(255, 255, 255, 0.2);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.08));
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.72), inset 0 0 18px rgba(255, 255, 255, 0.2);
 }
 
 .asg-slab-inner {
@@ -411,9 +378,9 @@ a {
 }
 
 .asg-label {
-  height: 65px;
+  height: 55px;
   display: grid;
-  grid-template-columns: 1fr 45px;
+  grid-template-columns: 1fr 42px;
   gap: 6px;
   background: #05080d;
   border: 1px solid rgba(255, 255, 255, 0.24);
@@ -457,7 +424,7 @@ a {
 }
 
 .asg-grade strong {
-  font-size: 30px;
+  font-size: 26px;
   line-height: 0.9;
 }
 
@@ -469,8 +436,8 @@ a {
 }
 
 .asg-card {
-  height: 190px;
-  border: 6px solid #d77b2b;
+  height: 160px;
+  border: 5px solid #d77b2b;
   border-radius: 7px;
   padding: 7px;
   background: linear-gradient(135deg, #2f8eb5, #eca249 48%, #bb4821);
@@ -490,7 +457,7 @@ a {
 }
 
 .card-img {
-  height: 105px;
+  height: 78px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -540,8 +507,8 @@ a {
 }
 
 .attack {
-  height: 20px;
-  margin-top: 6px;
+  height: 18px;
+  margin-top: 5px;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.66);
   display: flex;
@@ -558,8 +525,8 @@ a {
 
 .asg-platform {
   position: absolute;
-  bottom: 39px;
-  width: 315px;
+  bottom: 47px;
+  width: 300px;
   height: 46px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.38));
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -575,9 +542,9 @@ a {
 }
 
 .asg-trust-row > div {
-  height: 150px;
+  height: 126px;
   text-align: center;
-  padding: 26px 25px;
+  padding: 21px 25px;
   border-right: 1px solid var(--line);
 }
 
@@ -586,13 +553,13 @@ a {
 }
 
 .asg-trust-icon {
-  font-size: 30px;
+  font-size: 28px;
   color: var(--gold2);
-  margin-bottom: 9px;
+  margin-bottom: 8px;
 }
 
 .asg-trust-row h3 {
-  margin: 0 0 8px;
+  margin: 0 0 7px;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.8px;
@@ -603,7 +570,7 @@ a {
   max-width: 165px;
   color: var(--muted);
   font-size: 10px;
-  line-height: 1.4;
+  line-height: 1.34;
 }
 
 .asg-split {
@@ -614,7 +581,7 @@ a {
 }
 
 .asg-panel {
-  padding: 30px 40px;
+  padding: 24px 40px;
 }
 
 .asg-panel.border {
@@ -622,7 +589,7 @@ a {
 }
 
 .asg-panel h2 {
-  margin: 0 0 13px;
+  margin: 0 0 11px;
   font-size: 20px;
   line-height: 1.1;
   text-transform: uppercase;
@@ -630,11 +597,11 @@ a {
 }
 
 .asg-panel p {
-  margin: 0 0 15px;
+  margin: 0 0 12px;
   max-width: 370px;
   color: #d7dfe7;
   font-size: 10px;
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 .asg-standard-grid {
@@ -647,14 +614,14 @@ a {
 }
 
 .asg-standard-grid div {
-  height: 84px;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 7px;
+  gap: 6px;
   color: var(--gold2);
-  font-size: 25px;
+  font-size: 23px;
   border-right: 1px solid rgba(255, 255, 255, 0.12);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
@@ -683,20 +650,20 @@ a {
   display: grid;
   grid-template-columns: 42px 30px 1fr;
   gap: 11px;
-  padding: 8px 0;
+  padding: 6px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .asg-step div:first-child {
   color: var(--gold);
-  font-size: 23px;
+  font-size: 22px;
   font-weight: 900;
   line-height: 1;
 }
 
 .asg-step > span {
   color: var(--gold2);
-  font-size: 20px;
+  font-size: 19px;
 }
 
 .asg-step h3 {
@@ -710,12 +677,12 @@ a {
   margin: 0;
   color: var(--muted);
   font-size: 8.5px;
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
 .pricing .asg-panel {
-  padding-top: 23px;
-  padding-bottom: 18px;
+  padding-top: 18px;
+  padding-bottom: 16px;
 }
 
 .asg-pricing-table {
@@ -723,7 +690,7 @@ a {
   border: 1px solid rgba(201, 146, 64, 0.36);
   border-radius: 4px;
   overflow: hidden;
-  margin: 10px 0 8px;
+  margin: 8px 0 6px;
 }
 
 .asg-pricing-table > div {
@@ -732,7 +699,7 @@ a {
 }
 
 .asg-pricing-table span {
-  padding: 10px 12px;
+  padding: 8px 12px;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   font-size: 9px;
   text-transform: uppercase;
@@ -761,10 +728,10 @@ a {
 }
 
 .asg-cert-search {
-  height: 35px;
+  height: 32px;
   max-width: 390px;
   display: flex;
-  margin: 10px 0;
+  margin: 8px 0;
 }
 
 .asg-cert-search input {
@@ -790,7 +757,7 @@ a {
 
 .asg-cert-result {
   max-width: 390px;
-  height: 88px;
+  height: 80px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.22);
@@ -801,15 +768,15 @@ a {
 }
 
 .asg-cert-thumb {
-  width: 58px;
-  height: 68px;
+  width: 54px;
+  height: 62px;
   border: 4px solid #d77b2b;
   border-radius: 4px;
   background: linear-gradient(135deg, #2f8eb5, #eca249 55%, #bb4821);
 }
 
 .asg-cert-result h3 {
-  margin: 0 0 4px;
+  margin: 0 0 3px;
   font-size: 12px;
 }
 
@@ -819,12 +786,12 @@ a {
 }
 
 .asg-cert-result p {
-  margin: 2px 0;
+  margin: 1px 0;
   font-size: 9px;
 }
 
 .asg-waitlist {
-  padding: 18px 40px;
+  padding: 16px 40px;
   display: grid;
   grid-template-columns: 1.25fr 1.65fr;
   gap: 26px;
@@ -841,11 +808,11 @@ a {
 
 .asg-waitlist-copy > div {
   color: var(--gold2);
-  font-size: 32px;
+  font-size: 30px;
 }
 
 .asg-waitlist h2 {
-  margin: 0 0 5px;
+  margin: 0 0 4px;
   font-size: 20px;
   text-transform: uppercase;
   letter-spacing: 1.2px;
@@ -864,7 +831,7 @@ a {
 }
 
 .asg-waitlist input {
-  height: 32px;
+  height: 30px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 3px;
   background: rgba(0, 0, 0, 0.24);
@@ -874,7 +841,7 @@ a {
 }
 
 .asg-waitlist button {
-  height: 32px;
+  height: 30px;
   border: 1px solid var(--gold);
   border-radius: 3px;
   background: linear-gradient(135deg, #8c6025, #e5bc6f);
@@ -889,7 +856,7 @@ a {
   grid-template-columns: 1.3fr 0.8fr 0.8fr 1fr 120px;
   gap: 20px;
   align-items: start;
-  padding: 26px 40px 20px;
+  padding: 22px 40px 16px;
   background: #030914;
 }
 
@@ -909,14 +876,14 @@ a {
 .asg-footer p,
 .asg-footer a {
   display: block;
-  margin: 5px 0;
+  margin: 4px 0;
   color: var(--muted);
   font-size: 9px;
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
 .asg-footer h4 {
-  margin: 0 0 8px;
+  margin: 0 0 7px;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.8px;
@@ -943,14 +910,14 @@ a {
   grid-column: 1 / -1 !important;
   text-align: center;
   color: #98a3ac !important;
-  margin: 5px 0 0 !important;
+  margin: 3px 0 0 !important;
   font-size: 8px !important;
 }
 
 @media (max-width: 900px) {
   .asg-site {
     margin: 0;
-    max-width: none;
+    width: 100%;
   }
 
   .asg-nav,
@@ -979,10 +946,6 @@ a {
     grid-template-columns: 1fr 1fr;
   }
 
-  .asg-footer {
-    gap: 22px;
-  }
-
   .asg-stamp {
     justify-self: start;
   }
@@ -990,6 +953,7 @@ a {
 
 @media (max-width: 560px) {
   .asg-hero {
+    height: auto;
     padding: 35px 22px;
   }
 
