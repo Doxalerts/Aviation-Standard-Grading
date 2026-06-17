@@ -6,7 +6,6 @@ export default function Home() {
           <div className="asg-logo">
             <span>ASG</span>
           </div>
-
           <div>
             <div className="asg-brand-main">AVIATION</div>
             <div className="asg-brand-sub">STANDARD GRADING</div>
@@ -22,18 +21,16 @@ export default function Home() {
           <a href="#waitlist">Waitlist</a>
         </nav>
 
-        <a href="#cert" className="asg-nav-button">
-          Search Cert
-        </a>
+        <a href="#cert" className="asg-nav-button">Search Cert</a>
       </header>
 
       <section id="home" className="asg-hero">
         <div className="hangar">
-          <span />
+          <span></span>
         </div>
 
         <div className="plane">
-          <i />
+          <i></i>
         </div>
 
         <div className="asg-hero-copy">
@@ -58,7 +55,6 @@ export default function Home() {
 
           <div className="asg-notice">
             <div className="asg-notice-icon">!</div>
-
             <div>
               <strong>Submissions are currently paused</strong>
               <p>
@@ -69,18 +65,13 @@ export default function Home() {
           </div>
 
           <div className="asg-buttons">
-            <a href="#cert" className="asg-button gold">
-              Search a Cert
-            </a>
-
-            <a href="#waitlist" className="asg-button">
-              Join the Waitlist
-            </a>
+            <a href="#cert" className="asg-button gold">Search a Cert</a>
+            <a href="#waitlist" className="asg-button">Join the Waitlist</a>
           </div>
         </div>
 
         <div className="asg-slab-stage">
-          <div className="asg-glow" />
+          <div className="asg-glow"></div>
 
           <div className="asg-slab">
             <div className="asg-slab-inner">
@@ -94,7 +85,7 @@ export default function Home() {
                     <br />
                     Cert #000128
                   </h3>
-                  <b />
+                  <b></b>
                 </div>
 
                 <div className="asg-grade">
@@ -111,7 +102,7 @@ export default function Home() {
 
                 <div className="card-img">
                   <div className="dragon">
-                    <span />
+                    <span></span>
                   </div>
                 </div>
 
@@ -126,7 +117,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="asg-platform" />
+          <div className="asg-platform"></div>
         </div>
       </section>
 
@@ -281,7 +272,7 @@ export default function Home() {
           </div>
 
           <div className="asg-cert-result">
-            <div className="asg-cert-thumb" />
+            <div className="asg-cert-thumb"></div>
 
             <div>
               <h3>
@@ -328,18 +319,18 @@ export default function Home() {
 
         <div>
           <h4>Quick Links</h4>
-          <a>The Standard</a>
-          <a>Process</a>
-          <a>Pricing</a>
-          <a>Cert Lookup</a>
-          <a>Waitlist</a>
+          <a href="#standard">The Standard</a>
+          <a href="#process">Process</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#cert">Cert Lookup</a>
+          <a href="#waitlist">Waitlist</a>
         </div>
 
         <div>
           <h4>Company</h4>
-          <a>About ASG</a>
-          <a>Standards</a>
-          <a>Contact</a>
+          <a href="#standard">About ASG</a>
+          <a href="#standard">Standards</a>
+          <a href="#waitlist">Contact</a>
         </div>
 
         <div>
