@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background: #eeeeee;
@@ -18,6 +22,7 @@ body {
 }
 
 .asg-homepage-frame {
+  position: relative;
   width: min(100%, 960px);
   background: #020812;
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.22);
@@ -29,6 +34,183 @@ body {
   height: auto;
 }
 
+.hotspot,
+.anchor {
+  position: absolute;
+  display: block;
+}
+
+.hotspot {
+  z-index: 10;
+}
+
+.anchor {
+  width: 1px;
+  height: 1px;
+}
+
+/* Section anchor positions */
+.standard-anchor {
+  left: 0;
+  top: 47.5%;
+}
+
+.process-anchor {
+  left: 0;
+  top: 47.5%;
+}
+
+.pricing-anchor {
+  left: 0;
+  top: 70%;
+}
+
+.cert-anchor {
+  left: 0;
+  top: 70%;
+}
+
+.waitlist-anchor {
+  left: 0;
+  top: 84%;
+}
+
+/* Top nav clickable areas */
+.nav-home {
+  left: 39.4%;
+  top: 2.2%;
+  width: 4.4%;
+  height: 2.2%;
+}
+
+.nav-standard {
+  left: 45%;
+  top: 2.2%;
+  width: 8.2%;
+  height: 2.2%;
+}
+
+.nav-process {
+  left: 54.5%;
+  top: 2.2%;
+  width: 5.7%;
+  height: 2.2%;
+}
+
+.nav-pricing {
+  left: 61.6%;
+  top: 2.2%;
+  width: 5.4%;
+  height: 2.2%;
+}
+
+.nav-cert {
+  left: 68.3%;
+  top: 2.2%;
+  width: 7.7%;
+  height: 2.2%;
+}
+
+.nav-waitlist {
+  left: 77.2%;
+  top: 2.2%;
+  width: 6.6%;
+  height: 2.2%;
+}
+
+.top-search {
+  left: 86.8%;
+  top: 1.55%;
+  width: 9.8%;
+  height: 3.2%;
+}
+
+/* Hero buttons */
+.hero-search {
+  left: 7.3%;
+  top: 31.2%;
+  width: 16.2%;
+  height: 3.6%;
+}
+
+.hero-waitlist {
+  left: 25%;
+  top: 31.2%;
+  width: 16.8%;
+  height: 3.6%;
+}
+
+/* Real cert form overlay */
+.cert-form {
+  position: absolute;
+  z-index: 20;
+  left: 58.2%;
+  top: 73.45%;
+  width: 31.2%;
+  height: 3.15%;
+  display: grid;
+  grid-template-columns: 1fr 26%;
+}
+
+.cert-form input,
+.cert-form button,
+.waitlist-form input,
+.waitlist-form button {
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.cert-form input {
+  padding: 0 8px;
+  font-size: 10px;
+}
+
+.cert-form button {
+  cursor: pointer;
+  font-size: 8px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+/* Real waitlist form overlay */
+.waitlist-form {
+  position: absolute;
+  z-index: 20;
+  left: 43.9%;
+  top: 85.75%;
+  width: 47.7%;
+  height: 5.3%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 2.1%;
+  row-gap: 13%;
+}
+
+.waitlist-form input {
+  padding: 0 8px;
+  font-size: 9px;
+}
+
+.waitlist-form input:nth-child(3) {
+  grid-column: 1 / 2;
+}
+
+.waitlist-form button {
+  cursor: pointer;
+  font-size: 8px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.cert-form input::placeholder,
+.waitlist-form input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
 @media (max-width: 640px) {
   .asg-page {
     padding: 0;
@@ -37,5 +219,18 @@ body {
   .asg-homepage-frame {
     width: 100%;
     box-shadow: none;
+  }
+
+  .cert-form input {
+    font-size: 8px;
+  }
+
+  .cert-form button,
+  .waitlist-form button {
+    font-size: 6px;
+  }
+
+  .waitlist-form input {
+    font-size: 7px;
   }
 }
