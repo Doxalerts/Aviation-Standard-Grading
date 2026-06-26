@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   margin: 0;
   background: #eeeeee;
@@ -22,7 +18,6 @@ body {
 }
 
 .asg-homepage-frame {
-  position: relative;
   width: min(100%, 960px);
   background: #020812;
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.22);
@@ -32,84 +27,6 @@ body {
   display: block;
   width: 100%;
   height: auto;
-}
-
-.hotspot {
-  position: absolute;
-  display: block;
-  z-index: 5;
-}
-
-.nav-home {
-  left: 39.4%;
-  top: 2.2%;
-  width: 4.4%;
-  height: 2.2%;
-}
-
-.nav-standard {
-  left: 45%;
-  top: 2.2%;
-  width: 8.2%;
-  height: 2.2%;
-}
-
-.nav-process {
-  left: 54.5%;
-  top: 2.2%;
-  width: 5.7%;
-  height: 2.2%;
-}
-
-.nav-pricing {
-  left: 61.6%;
-  top: 2.2%;
-  width: 5.4%;
-  height: 2.2%;
-}
-
-.nav-cert {
-  left: 68.3%;
-  top: 2.2%;
-  width: 7.7%;
-  height: 2.2%;
-}
-
-.nav-waitlist {
-  left: 77.2%;
-  top: 2.2%;
-  width: 6.6%;
-  height: 2.2%;
-}
-
-.top-search {
-  left: 86.8%;
-  top: 1.55%;
-  width: 9.8%;
-  height: 3.2%;
-}
-
-.hero-search {
-  left: 7.3%;
-  top: 31.2%;
-  width: 16.2%;
-  height: 3.6%;
-}
-
-.hero-waitlist {
-  left: 25%;
-  top: 31.2%;
-  width: 16.8%;
-  height: 3.6%;
-}
-
-.screen-reader-content {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  left: -9999px;
-  top: auto;
-  overflow: hidden;
 }
 
 @media (max-width: 640px) {
