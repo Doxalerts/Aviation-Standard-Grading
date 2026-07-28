@@ -1,0 +1,19 @@
+ASG WEBSITE REPLACEMENT — GITHUB UPLOAD
+
+1. Extract ASG_FULL_REBUILD.zip on your computer.
+2. Open: https://github.com/Doxalerts/Aviation-Standard-Grading
+3. Click Add file, then Upload files.
+4. Open the extracted Aviation-Standard-Grading-Rebuild folder.
+5. Select everything INSIDE that folder and drag it into GitHub's upload box.
+6. Use commit message: Full ASG website rebuild
+7. Click Commit changes.
+8. Vercel should automatically deploy the main branch because the current project is already connected.
+
+Important:
+- Upload the contents, not the ZIP file itself.
+- Existing unused files can remain; the replacement app files override the old website.
+- The existing package-lock.json in GitHub can remain.
+- Do not mail cards until an official submission opening is announced.
+
+Cert test after deployment:
+https://www.aviationstandardgrading.com/cert/ASG-000001

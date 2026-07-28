@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aviation Standard Grading — Full Rebuild
 
-## Getting Started
+This replaces the previous screenshot-and-hotspot homepage with a real responsive Next.js website.
 
-First, run the development server:
+## Included
+
+- Responsive multi-page website
+- Homepage, grading standard, process, pricing, cert lookup, about, contact, and waitlist
+- Dynamic certification URLs: `/cert/[certNumber]`
+- Existing demonstration cert retained as `ASG-000001`
+- Mobile navigation
+- SEO metadata, sitemap, and robots file
+- Existing ASG visual assets reused from the original repository
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploy
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Replace the files in the existing GitHub repository, commit to `main`, and Vercel should deploy automatically if it is still connected to that repository.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Adding certification records
 
-## Learn More
+Edit `lib/certs.ts`. Add a record to `certificationRecords`, including any accepted aliases.
 
-To learn more about Next.js, take a look at the following resources:
+## Important
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The waitlist form opens a prefilled email to `info@aviationstandardgrading.com`. It does not claim to store submissions in a database. A database-backed form can be added later when the final email/database provider is chosen.
