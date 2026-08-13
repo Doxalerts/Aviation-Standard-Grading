@@ -414,3 +414,74 @@ p { color: inherit; }
   .footer-grid > div:first-child { grid-column: auto; }
   .footer-bottom { flex-direction: column; }
 }
+
+
+
+/* =========================================================
+   ASG CERTIFICATION RECORD — FRONT / BACK SLAB DISPLAY
+   ========================================================= */
+
+.record-images {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.record-image-panel {
+  min-width: 0;
+}
+
+.record-image-label {
+  margin: 0 0 10px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.record-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.record-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 760px;
+  object-fit: contain;
+}
+
+.record-note {
+  margin-top: 20px;
+  padding: 16px 18px;
+  border-left: 3px solid currentColor;
+  line-height: 1.65;
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .record-images {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .record-images {
+    gap: 18px;
+  }
+
+  .record-image {
+    padding: 10px;
+    border-radius: 14px;
+  }
+}
