@@ -1,3 +1,5 @@
+import { certificationRecords } from "@/data/certificates";
+
 export type CertificationRecord = {
   certNumber: string;
   aliases: string[];
@@ -11,28 +13,18 @@ export type CertificationRecord = {
   gradeLabel: string;
   status: "Verified" | "Inactive";
   certifiedOn: string;
-  image: string;
+  frontImage: string;
+  backImage: string;
   notes?: string;
 };
 
-export const certificationRecords: CertificationRecord[] = [
-  {
-    certNumber: "ASG-000001",
-    aliases: ["000001", "1", "0001234567"],
-    cardName: "Charizard ex",
-    game: "Pokémon",
-    year: "2023",
-    setName: "Scarlet & Violet 151 — Japanese",
-    cardNumber: "201/165",
-    variant: "Special Art Rare",
-    grade: "10",
-    gradeLabel: "Gem Mint",
-    status: "Verified",
-    certifiedOn: "2026-04-18",
-    image: "/asg-card-showcase.png",
-    notes: "Certification record retained from the original ASG demonstration vault."
-  }
-];
+export type CertificationLookupRecord = CertificationRecord & {
+  /**
+   * Temporary compatibility field for the existing cert result page.
+   * Once the page is upgraded, it will use frontImage and backImage directly.
+   */
+  image: string;
+};
 
 export function normalizeCert(value: string): string {
   return decodeURIComponent(value)
@@ -42,10 +34,30 @@ export function normalizeCert(value: string): string {
     .toUpperCase();
 }
 
-export function findCertification(value: string): CertificationRecord | undefined {
+export function findCertification(
+  value: string
+): CertificationLookupRecord | undefined {
   const normalized = normalizeCert(value);
-  return certificationRecords.find((record) => {
-    if (normalizeCert(record.certNumber) === normalized) return true;
-    return record.aliases.some((alias) => normalizeCert(alias) === normalized);
+
+  const record = certificationRecords.find((certificate) => {
+    if (normalizeCert(certificate.certNumber) === normalized) {
+      return true;
+    }
+
+    return certificate.aliases.some(
+      (alias) => normalizeCert(alias) === normalized
+    );
   });
+
+  if (!record) {
+    return undefined;
+  }
+
+  return {
+    ...record,
+
+    // Keeps the current cert page working until we upgrade it
+    // to display both front and back slab images.
+    image: record.frontImage
+  };
 }
