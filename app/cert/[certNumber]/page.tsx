@@ -2,21 +2,34 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CertSearch } from "@/components/CertSearch";
-import { findCertification, normalizeCert } from "@/lib/certs";
+import { normalizeCert } from "@/lib/certs";
+import {
+  fetchCertificateByNumber,
+  getPublicCertImageUrl
+} from "@/lib/supabaseRest";
 
 type PageProps = {
   params: Promise<{ certNumber: string }>;
 };
 
+async function getRecord(certNumber: string) {
+  try {
+    return await fetchCertificateByNumber(certNumber);
+  } catch (error) {
+    console.error("ASG certificate lookup error", error);
+    return null;
+  }
+}
+
 export async function generateMetadata({
   params
 }: PageProps): Promise<Metadata> {
   const { certNumber } = await params;
-  const record = findCertification(certNumber);
+  const record = await getRecord(certNumber);
 
   return {
     title: record
-      ? `${record.certNumber} — ${record.cardName}`
+      ? `${record.cert_number} — ${record.card_name}`
       : "Certification Not Found",
     robots: record
       ? { index: true, follow: true }
@@ -26,7 +39,7 @@ export async function generateMetadata({
 
 export default async function CertRecordPage({ params }: PageProps) {
   const { certNumber } = await params;
-  const record = findCertification(certNumber);
+  const record = await getRecord(certNumber);
   const searched = normalizeCert(certNumber);
 
   if (!record) {
@@ -53,6 +66,9 @@ export default async function CertRecordPage({ params }: PageProps) {
     );
   }
 
+  const frontImage = getPublicCertImageUrl(record.front_image_path);
+  const backImage = getPublicCertImageUrl(record.back_image_path);
+
   return (
     <main className="record-page">
       <section className="shell record-heading">
@@ -65,13 +81,14 @@ export default async function CertRecordPage({ params }: PageProps) {
         </span>
 
         <p className="eyebrow">
-          Certification {record.certNumber}
+          Certification {record.cert_number}
         </p>
 
-        <h1>{record.cardName}</h1>
+        <h1>{record.card_name}</h1>
 
         <p>
-          {record.year} · {record.setName} · {record.variant}
+          {record.year} · {record.set_name}
+          {record.variant ? ` · ${record.variant}` : ""}
         </p>
       </section>
 
@@ -81,13 +98,17 @@ export default async function CertRecordPage({ params }: PageProps) {
             <p className="record-image-label">Front</p>
 
             <div className="record-image">
-              <Image
-                src={record.frontImage}
-                alt={`${record.cardName} ASG slab front`}
-                width={760}
-                height={1000}
-                priority
-              />
+              {frontImage ? (
+                <Image
+                  src={frontImage}
+                  alt={`${record.card_name} ASG slab front`}
+                  width={760}
+                  height={1000}
+                  priority
+                />
+              ) : (
+                <p>Front slab image pending.</p>
+              )}
             </div>
           </div>
 
@@ -95,12 +116,16 @@ export default async function CertRecordPage({ params }: PageProps) {
             <p className="record-image-label">Back</p>
 
             <div className="record-image">
-              <Image
-                src={record.backImage}
-                alt={`${record.cardName} ASG slab back`}
-                width={760}
-                height={1000}
-              />
+              {backImage ? (
+                <Image
+                  src={backImage}
+                  alt={`${record.card_name} ASG slab back`}
+                  width={760}
+                  height={1000}
+                />
+              ) : (
+                <p>Back slab image pending.</p>
+              )}
             </div>
           </div>
         </div>
@@ -108,18 +133,18 @@ export default async function CertRecordPage({ params }: PageProps) {
         <div className="record-data">
           <div className="record-grade">
             <strong>{record.grade}</strong>
-            <span>{record.gradeLabel}</span>
+            <span>{record.grade_label}</span>
           </div>
 
           <dl>
             <div>
               <dt>Certification</dt>
-              <dd>{record.certNumber}</dd>
+              <dd>{record.cert_number}</dd>
             </div>
 
             <div>
               <dt>Card</dt>
-              <dd>{record.cardName}</dd>
+              <dd>{record.card_name}</dd>
             </div>
 
             <div>
@@ -134,22 +159,22 @@ export default async function CertRecordPage({ params }: PageProps) {
 
             <div>
               <dt>Set</dt>
-              <dd>{record.setName}</dd>
+              <dd>{record.set_name}</dd>
             </div>
 
             <div>
               <dt>Card number</dt>
-              <dd>{record.cardNumber}</dd>
+              <dd>{record.card_number}</dd>
             </div>
 
             <div>
               <dt>Variant</dt>
-              <dd>{record.variant}</dd>
+              <dd>{record.variant || "—"}</dd>
             </div>
 
             <div>
               <dt>Certified</dt>
-              <dd>{record.certifiedOn}</dd>
+              <dd>{record.certified_on}</dd>
             </div>
 
             <div>
