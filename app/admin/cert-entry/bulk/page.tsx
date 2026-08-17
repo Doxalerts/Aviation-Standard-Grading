@@ -1,7 +1,7 @@
-import { CertEntryForm } from "@/components/CertEntryForm";
+import { BulkPasteImport } from "@/components/BulkPasteImport";
 
 export const metadata = {
-  title: "ASG Bulk Cert Import"
+  title: "ASG Fast Bulk Import"
 };
 
 export default function BulkCertEntryPage() {
@@ -9,11 +9,11 @@ export default function BulkCertEntryPage() {
     <main className="record-page">
       <section className="shell cert-admin-page">
         <p className="eyebrow">ASG Internal Tool</p>
-        <h1>Bulk Certificate Import</h1>
+        <h1>Fast Bulk Import</h1>
         <p className="cert-admin-intro">
-          Upload a CSV and matching slab images to load large batches into the ASG Vault.
+          Paste certificate rows directly, select the matching slab photos, and import the batch into the ASG Vault.
         </p>
-        <CertEntryForm />
+        <BulkPasteImport />
       </section>
     </main>
   );
