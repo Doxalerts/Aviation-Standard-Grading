@@ -87,7 +87,11 @@ export async function uploadCertImage(accessToken: string, certNumber: string, s
   const path = `${safeCert}/${side}.${extension}`;
   const response = await fetch(`${SUPABASE_URL}/storage/v1/object/cert-images/${path}`, {
     method: "POST",
-    headers: { apikey: SUPABASE_PUBLISHABLE_KEY, Authorization: `Bearer ${accessToken}`, "Content-Type": file.type || "application/octet-stream", "x-upsert": "true" },
+    headers: {
+      apikey: SUPABASE_PUBLISHABLE_KEY,
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": file.type || "application/octet-stream",
+    },
     body: file,
   });
   if (!response.ok) throw new Error(`Image upload failed: ${await response.text()}`);
