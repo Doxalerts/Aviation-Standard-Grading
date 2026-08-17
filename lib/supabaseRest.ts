@@ -141,3 +141,31 @@ export async function upsertCertificate(accessToken: string, certificate: NewCer
   const rows = (await response.json()) as SupabaseCertificateRow[];
   return rows[0] ?? null;
 }
+
+// Image-only update for certificates that already exist.
+// This intentionally touches ONLY front_image_path/back_image_path so card data cannot be overwritten.
+export async function updateCertificateImages(
+  accessToken: string,
+  certNumber: string,
+  frontImagePath: string,
+  backImagePath: string
+) {
+  const normalized = normalizeCert(certNumber);
+  const response = await fetch(
+    `${SUPABASE_URL}/rest/v1/certificates?cert_number=eq.${encodeURIComponent(normalized)}`,
+    {
+      method: "PATCH",
+      headers: {
+        apikey: SUPABASE_PUBLISHABLE_KEY,
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify({ front_image_path: frontImagePath, back_image_path: backImagePath }),
+    }
+  );
+  if (!response.ok) throw new Error(`Image attach failed: ${await response.text()}`);
+  const rows = (await response.json()) as SupabaseCertificateRow[];
+  if (!rows[0]) throw new Error(`Certificate ${normalized} was not found.`);
+  return rows[0];
+}
