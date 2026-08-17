@@ -95,9 +95,20 @@ export async function uploadCertImage(accessToken: string, certNumber: string, s
 }
 
 export type NewCertificateInput = {
-  cert_number: string; card_name: string; game: string; year: string; set_name: string; card_number: string;
-  variant: string; grade: string; grade_label: string; status: "Verified" | "Inactive"; certified_on: string;
-  front_image_path: string; back_image_path: string; notes: string | null;
+  cert_number: string;
+  card_name: string;
+  game: string;
+  year: string;
+  set_name: string;
+  card_number: string;
+  variant: string;
+  grade: string;
+  grade_label: string;
+  status: "Verified" | "Inactive";
+  certified_on: string;
+  front_image_path: string | null;
+  back_image_path: string | null;
+  notes: string | null;
 };
 
 export async function saveCertificate(accessToken: string, certificate: NewCertificateInput) {
@@ -107,6 +118,22 @@ export async function saveCertificate(accessToken: string, certificate: NewCerti
     body: JSON.stringify(certificate),
   });
   if (!response.ok) throw new Error(`Certificate save failed: ${await response.text()}`);
+  const rows = (await response.json()) as SupabaseCertificateRow[];
+  return rows[0] ?? null;
+}
+
+export async function upsertCertificate(accessToken: string, certificate: NewCertificateInput) {
+  const response = await fetch(`${SUPABASE_URL}/rest/v1/certificates?on_conflict=cert_number`, {
+    method: "POST",
+    headers: {
+      apikey: SUPABASE_PUBLISHABLE_KEY,
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+      Prefer: "resolution=merge-duplicates,return=representation",
+    },
+    body: JSON.stringify(certificate),
+  });
+  if (!response.ok) throw new Error(`Certificate import failed: ${await response.text()}`);
   const rows = (await response.json()) as SupabaseCertificateRow[];
   return rows[0] ?? null;
 }
