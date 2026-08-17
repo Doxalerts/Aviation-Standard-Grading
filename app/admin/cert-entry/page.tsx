@@ -1,7 +1,7 @@
 import { CertEntryForm } from "@/components/CertEntryForm";
 
 export const metadata = {
-  title: "ASG Cert Entry"
+  title: "ASG Vault Bulk Import"
 };
 
 export default function CertEntryPage() {
@@ -9,10 +9,9 @@ export default function CertEntryPage() {
     <main className="record-page">
       <section className="shell cert-admin-page">
         <p className="eyebrow">ASG Internal Tool</p>
-        <h1>Certificate Entry</h1>
+        <h1>Vault Import</h1>
         <p className="cert-admin-intro">
-          Enter the certified card information below. This tool generates
-          the exact ASG certificate-library record for the Vault.
+          Import certificate records and matching slab images into the ASG Vault in bulk.
         </p>
 
         <CertEntryForm />
