@@ -12,10 +12,10 @@ export default function ContactPage() {
       <section className="section section--light">
         <div className="shell contact-grid">
           <article className="contact-primary">
-            <p className="eyebrow eyebrow--dark">General Email</p>
+            <p className="eyebrow eyebrow--dark">ASG Support Email</p>
             <h2>info@aviationstandardgrading.com</h2>
             <p>For the fastest review, use a clear subject line and attach sharp front-and-back photos when asking about a holder or certification record.</p>
-            <a className="button button--primary" href="mailto:info@aviationstandardgrading.com">Open Email</a>
+            <a className="button button--primary" href="mailto:info@aviationstandardgrading.com">Email ASG Support</a>
           </article>
           <div className="contact-topics">
             <article><h2>Certification issue</h2><p>Include the full cert number, photos of the front and back of the slab, and a description of the mismatch.</p></article>
