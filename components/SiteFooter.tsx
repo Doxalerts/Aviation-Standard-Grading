@@ -23,7 +23,7 @@ export function SiteFooter() {
           <Link href="/about">About ASG</Link>
           <Link href="/submit">Submission waitlist</Link>
           <Link href="/contact">Contact</Link>
-          <a href="mailto:info@aviationstandardgrading.com">Email ASG</a>
+          <a href="mailto:info@aviationstandardgrading.com">ASG Support</a>
         </div>
       </div>
       <div className="shell footer-bottom">
