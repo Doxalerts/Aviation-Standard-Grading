@@ -91,6 +91,7 @@ export async function uploadCertImage(accessToken: string, certNumber: string, s
       apikey: SUPABASE_PUBLISHABLE_KEY,
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": file.type || "application/octet-stream",
+      "x-upsert": "true",
     },
     body: file,
   });
@@ -143,14 +144,19 @@ export async function upsertCertificate(accessToken: string, certificate: NewCer
 }
 
 // Image-only update for certificates that already exist.
-// This intentionally touches ONLY front_image_path/back_image_path so card data cannot be overwritten.
+// This intentionally touches ONLY image fields that are supplied so card data and the other image stay unchanged.
 export async function updateCertificateImages(
   accessToken: string,
   certNumber: string,
-  frontImagePath: string,
-  backImagePath: string
+  frontImagePath?: string | null,
+  backImagePath?: string | null
 ) {
   const normalized = normalizeCert(certNumber);
+  const patch: { front_image_path?: string | null; back_image_path?: string | null } = {};
+  if (frontImagePath !== undefined) patch.front_image_path = frontImagePath;
+  if (backImagePath !== undefined) patch.back_image_path = backImagePath;
+  if (Object.keys(patch).length === 0) throw new Error("Choose at least one image to attach.");
+
   const response = await fetch(
     `${SUPABASE_URL}/rest/v1/certificates?cert_number=eq.${encodeURIComponent(normalized)}`,
     {
@@ -161,7 +167,7 @@ export async function updateCertificateImages(
         "Content-Type": "application/json",
         Prefer: "return=representation",
       },
-      body: JSON.stringify({ front_image_path: frontImagePath, back_image_path: backImagePath }),
+      body: JSON.stringify(patch),
     }
   );
   if (!response.ok) throw new Error(`Image attach failed: ${await response.text()}`);
