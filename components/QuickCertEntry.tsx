@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import {
   loginAdmin,
   upsertCertificate,
+  updateCertificateImages,
   uploadCertImage,
   verifyAsgAdmin,
   type NewCertificateInput,
@@ -56,6 +57,13 @@ export function QuickCertEntry() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+
+  const [existingCertNumber, setExistingCertNumber] = useState("");
+  const [existingFrontFile, setExistingFrontFile] = useState<File | null>(null);
+  const [existingBackFile, setExistingBackFile] = useState<File | null>(null);
+  const [attaching, setAttaching] = useState(false);
+  const [attachMessage, setAttachMessage] = useState("");
+  const [attachError, setAttachError] = useState("");
 
   function setField(field: keyof QuickForm, value: string) {
     setForm((current) => ({ ...current, [field]: value }));
@@ -141,6 +149,45 @@ export function QuickCertEntry() {
     }
   }
 
+  async function attachExistingPhotos(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!accessToken || attaching) return;
+
+    setAttaching(true);
+    setAttachMessage("");
+    setAttachError("");
+
+    try {
+      const certNumber = existingCertNumber.trim().toUpperCase().replace(/\s+/g, "");
+      if (!certNumber) throw new Error("Certification number is required.");
+      if (!existingFrontFile && !existingBackFile) throw new Error("Choose at least one photo to attach.");
+
+      let frontPath: string | undefined;
+      let backPath: string | undefined;
+
+      if (existingFrontFile) {
+        frontPath = await uploadCertImage(accessToken, certNumber, "front", existingFrontFile);
+      }
+      if (existingBackFile) {
+        backPath = await uploadCertImage(accessToken, certNumber, "back", existingBackFile);
+      }
+
+      await updateCertificateImages(accessToken, certNumber, frontPath, backPath);
+      setAttachMessage(`${certNumber} photos updated.`);
+      setExistingFrontFile(null);
+      setExistingBackFile(null);
+
+      const frontInput = document.getElementById("asg-existing-front-photo") as HTMLInputElement | null;
+      const backInput = document.getElementById("asg-existing-back-photo") as HTMLInputElement | null;
+      if (frontInput) frontInput.value = "";
+      if (backInput) backInput.value = "";
+    } catch (attachFailure) {
+      setAttachError(attachFailure instanceof Error ? attachFailure.message : "Could not attach photos.");
+    } finally {
+      setAttaching(false);
+    }
+  }
+
   if (!accessToken) {
     return (
       <div className="bulk-import-shell bulk-login-shell">
@@ -168,44 +215,80 @@ export function QuickCertEntry() {
   }
 
   return (
-    <div className="bulk-import-shell">
-      <div className="bulk-import-actions">
-        <div>
-          <p className="eyebrow">Quick Add</p>
-          <h2>Add One Certificate</h2>
-          <p>Enter the slab, attach front/back photos, then click Save & Add Next.</p>
+    <>
+      <div className="bulk-import-shell">
+        <div className="bulk-import-actions">
+          <div>
+            <p className="eyebrow">Quick Add</p>
+            <h2>Add One Certificate</h2>
+            <p>Enter the slab, attach front/back photos, then click Save & Add Next.</p>
+          </div>
+          <a className="button button--ghost" href="/admin/cert-entry/bulk">Bulk Import</a>
         </div>
-        <a className="button button--ghost" href="/admin/cert-entry/bulk">Bulk Import</a>
+
+        <form className="cert-admin-form" onSubmit={saveCertificate}>
+          <div className="cert-admin-fields">
+            <label>Certification Number<input required value={form.certNumber} onChange={(event) => setField("certNumber", event.target.value)} placeholder="ASG116651" /></label>
+            <label>Card Name<input required value={form.cardName} onChange={(event) => setField("cardName", event.target.value)} placeholder="DACHSBUN EX" /></label>
+            <label>Game<input required value={form.game} onChange={(event) => setField("game", event.target.value)} /></label>
+            <label>Year<input required value={form.year} onChange={(event) => setField("year", event.target.value)} placeholder="2026" /></label>
+            <label>Set<input required value={form.setName} onChange={(event) => setField("setName", event.target.value)} placeholder="CSV7 CS" /></label>
+            <label>Card Number<input required value={form.cardNumber} onChange={(event) => setField("cardNumber", event.target.value)} placeholder="106/204" /></label>
+            <label>Variant<input value={form.variant} onChange={(event) => setField("variant", event.target.value)} placeholder="Holo" /></label>
+            <label>Grade<input required value={form.grade} onChange={(event) => setField("grade", event.target.value)} placeholder="10" /></label>
+            <label>Grade Label<input required value={form.gradeLabel} onChange={(event) => setField("gradeLabel", event.target.value)} placeholder="GEM MINT" /></label>
+            <label>Certified Date<input type="date" required value={form.certifiedOn} onChange={(event) => setField("certifiedOn", event.target.value)} /></label>
+            <label>Front Slab Photo<input id="asg-front-photo" type="file" accept="image/jpeg,image/png,image/webp" onChange={(event) => setFrontFile(event.target.files?.[0] || null)} /></label>
+            <label>Back Slab Photo<input id="asg-back-photo" type="file" accept="image/jpeg,image/png,image/webp" onChange={(event) => setBackFile(event.target.files?.[0] || null)} /></label>
+          </div>
+
+          <label className="cert-admin-notes">
+            Notes
+            <textarea value={form.notes} onChange={(event) => setField("notes", event.target.value)} placeholder="Optional" />
+          </label>
+
+          {error ? <p className="form-error">{error}</p> : null}
+          {message ? <p className="form-message">{message}</p> : null}
+
+          <button className="button button--primary" type="submit" disabled={saving}>
+            {saving ? "Saving…" : "Save & Add Next"}
+          </button>
+        </form>
       </div>
 
-      <form className="cert-admin-form" onSubmit={saveCertificate}>
-        <div className="cert-admin-fields">
-          <label>Certification Number<input required value={form.certNumber} onChange={(event) => setField("certNumber", event.target.value)} placeholder="ASG116651" /></label>
-          <label>Card Name<input required value={form.cardName} onChange={(event) => setField("cardName", event.target.value)} placeholder="DACHSBUN EX" /></label>
-          <label>Game<input required value={form.game} onChange={(event) => setField("game", event.target.value)} /></label>
-          <label>Year<input required value={form.year} onChange={(event) => setField("year", event.target.value)} placeholder="2026" /></label>
-          <label>Set<input required value={form.setName} onChange={(event) => setField("setName", event.target.value)} placeholder="CSV7 CS" /></label>
-          <label>Card Number<input required value={form.cardNumber} onChange={(event) => setField("cardNumber", event.target.value)} placeholder="106/204" /></label>
-          <label>Variant<input value={form.variant} onChange={(event) => setField("variant", event.target.value)} placeholder="Holo" /></label>
-          <label>Grade<input required value={form.grade} onChange={(event) => setField("grade", event.target.value)} placeholder="10" /></label>
-          <label>Grade Label<input required value={form.gradeLabel} onChange={(event) => setField("gradeLabel", event.target.value)} placeholder="GEM MINT" /></label>
-          <label>Certified Date<input type="date" required value={form.certifiedOn} onChange={(event) => setField("certifiedOn", event.target.value)} /></label>
-          <label>Front Slab Photo<input id="asg-front-photo" type="file" accept="image/jpeg,image/png,image/webp" onChange={(event) => setFrontFile(event.target.files?.[0] || null)} /></label>
-          <label>Back Slab Photo<input id="asg-back-photo" type="file" accept="image/jpeg,image/png,image/webp" onChange={(event) => setBackFile(event.target.files?.[0] || null)} /></label>
+      <div className="bulk-import-shell">
+        <div className="bulk-import-actions">
+          <div>
+            <p className="eyebrow">Existing Certificate</p>
+            <h2>Attach or Replace Slab Photos</h2>
+            <p>Use this when the cert already exists. It updates only the photos and will not change the card details.</p>
+          </div>
         </div>
 
-        <label className="cert-admin-notes">
-          Notes
-          <textarea value={form.notes} onChange={(event) => setField("notes", event.target.value)} placeholder="Optional" />
-        </label>
+        <form className="cert-admin-form" onSubmit={attachExistingPhotos}>
+          <div className="cert-admin-fields">
+            <label>
+              Certification Number
+              <input required value={existingCertNumber} onChange={(event) => { setExistingCertNumber(event.target.value); setAttachMessage(""); setAttachError(""); }} placeholder="ASG116577" />
+            </label>
+            <label>
+              Front Slab Photo
+              <input id="asg-existing-front-photo" type="file" accept="image/jpeg,image/png,image/webp" onChange={(event) => setExistingFrontFile(event.target.files?.[0] || null)} />
+            </label>
+            <label>
+              Back Slab Photo
+              <input id="asg-existing-back-photo" type="file" accept="image/jpeg,image/png,image/webp" onChange={(event) => setExistingBackFile(event.target.files?.[0] || null)} />
+            </label>
+          </div>
 
-        {error ? <p className="form-error">{error}</p> : null}
-        {message ? <p className="form-message">{message}</p> : null}
+          {attachError ? <p className="form-error">{attachError}</p> : null}
+          {attachMessage ? <p className="form-message">{attachMessage}</p> : null}
 
-        <button className="button button--primary" type="submit" disabled={saving}>
-          {saving ? "Saving…" : "Save & Add Next"}
-        </button>
-      </form>
-    </div>
+          <button className="button button--primary" type="submit" disabled={attaching}>
+            {attaching ? "Updating Photos…" : "Attach Photos"}
+          </button>
+        </form>
+      </div>
+    </>
   );
 }
